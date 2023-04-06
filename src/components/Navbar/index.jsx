@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './Navbar.module.scss'
+import { Link } from 'react-router-dom';
 
 function Navbar() {
 	const [isClicked, setIsClicked] = React.useState(false);
@@ -7,22 +8,24 @@ function Navbar() {
 	return (
 		<>
 			<nav>
-				<a href="index.html">
+				<Link to="/">
 					<img width={120} height={80} src="/img/logo.png" alt="Logo"></img>
-				</a>
+				</Link>
 
 				<div>
 					<ul className={`${styles.menu} ${isClicked ? {} : styles.close}`}>
-						<li><a href="index.html">Главная</a></li>
-						<li><a href="index.html">О компании</a></li>
-						<li><a href="index.html">Контакты</a></li>
-						<li><a href="index.html">Новости</a></li>
-						<li><a href="index.html">Отзывы</a></li>
+						<li><Link to="/">Главная</Link></li>
+						<li><Link to="/about">О компании</Link></li>
+						<li><Link to="/news">Новости</Link></li>
+						<li><Link to="/reviews">Отзывы</Link></li>
 					</ul>
 				</div>
 
 				<div className={styles.mobile}>
-					<i onClick={() => setIsClicked(!isClicked)} className={`${styles.bar} ${isClicked ? 'bi bi-x' : 'bi bi-list'}`}></i>
+					<i
+						onClick={() => setIsClicked(!isClicked)}
+						className={`${styles.bar} ${isClicked ? 'bi bi-x' : 'bi bi-list'}`}
+					></i>
 				</div>
 			</nav >
 		</>

@@ -1,0 +1,138 @@
+.form {
+	display: flex;
+	flex-direction: column;
+	width: auto;
+	padding: 50px 250px;
+
+	.formHeader {
+		text-align: center;
+		h2 {
+			font-size: 1.5rem;
+			font-weight: bold;
+			margin-bottom: 10px;
+		}
+
+		p {
+			font-size: 16px;
+			margin-bottom: 20px;
+		}
+
+		.success {
+			color: green;
+			font-size: 1.2rem;
+			font-weight: bold;
+			margin-top: 1rem;
+
+			animation: appearance 0.7s ease-in-out forwards;
+		}
+	}
+
+	.formGroup {
+		display: flex;
+		flex-direction: column;
+		margin-bottom: 15px;
+
+		label {
+			margin-bottom: 5px;
+			font-weight: bold;
+
+			.checkbox {
+				margin-right: 10px;
+			}
+
+			a {
+				text-decoration: underline;
+				color: #7f7fff;
+			}
+		}
+
+		input {
+			padding: 8px;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+			font-size: 16px;
+
+			&:focus {
+				outline: none;
+				border-color: #7f7fff;
+
+				animation: input 0.9s ease-in-out forwards;
+			}
+		}
+
+		.error {
+			color: red;
+			margin-top: 4px;
+
+			animation: appearance 0.7s ease-in-out forwards;
+		}
+	}
+
+	button {
+		padding: 10px;
+		margin-top: 20px;
+		background-color: #7f7fff;
+		border: none;
+		border-radius: 5px;
+		color: #fff;
+		font-size: 16px;
+		cursor: pointer;
+
+		&:hover {
+			background-color: #5555ff;
+		}
+
+		&:active {
+			background-color: #3333ff;
+		}
+	}
+
+	@media (max-width: 1000px) {
+		padding: 30px 120px;
+	}
+
+	@media (max-width: 600px) {
+		max-width: 100%;
+		padding: 30px;
+
+		.form-group {
+			margin-bottom: 10px;
+
+			label {
+				font-size: 14px;
+			}
+
+			input {
+				padding: 5px;
+				font-size: 14px;
+			}
+		}
+
+		button {
+			padding: 8px;
+			font-size: 14px;
+		}
+	}
+}
+
+@keyframes appearance {
+	from {
+		opacity: 0;
+		transform: translateY(-10px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes input {
+	from {
+		opacity: 0.5;
+		transform: scale(0.992);
+	}
+	to {
+		opacity: 1;
+		transform: scale(1);
+	}
+}
