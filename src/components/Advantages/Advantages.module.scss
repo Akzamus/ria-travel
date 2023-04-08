@@ -1,0 +1,23 @@
+.advantagesHeading {
+	font-size: 2rem;
+	font-weight: bold;
+	text-align: center;
+	margin-top: 30px;
+}
+
+.advantages {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	padding: 50px;
+}
+
+@media (max-width: 768px) {
+	.advantages {
+		padding: 10px;
+	}
+
+	.advantagesHeading {
+		font-size: 1.7rem;
+	}
+}

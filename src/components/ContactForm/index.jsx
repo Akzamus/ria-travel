@@ -1,4 +1,5 @@
-import React from "react";
+import { CSSTransition } from 'react-transition-group';
+import React from 'react';
 import styles from './ContactForm.module.scss'
 import InputMask from "react-input-mask";
 
@@ -9,6 +10,23 @@ function ContactForm() {
 	const [formErrors, setFormErrors] = React.useState({});
 	const [permission, setPermission] = React.useState(false);
 	const [isSubmitted, setIsSubmitted] = React.useState(false);
+
+	const fadeClassNames = {
+		enter: styles.fadeEnter,
+		enterActive: styles.fadeEnterActive,
+		exit: styles.fadeExit,
+		exitActive: styles.fadeExitActive,
+	};
+
+	const errorTexts= {
+		permission: 'Для отправки формы нужно ваше соглашение',
+		name: 'Имя может содержать только буквы и разделительные символы',
+		phone: 'Пожалуйста, введите корректный номер телефона',
+		country: 'Название страны может содержать только буквы и разделительные символы'
+	}
+
+	const properNamesRegex = /^[\p{L}\s'\-]+$/u;
+	const phoneRegex = /^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$/;
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -22,65 +40,77 @@ function ContactForm() {
 	};
 
 	const formValid = () => {
-		const properNamesRegex = /^[\p{L}\s'\-]+$/u;
-		const phoneRegex = /^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$/;
-		let valid = true;
+		setIsSubmitted(false);
 		const errors = {};
 
-		if (!permission) {
-			errors.permission = 'Для отправки формы нужно ваше соглашение';
-			valid = false
-		}
-
-		if (!properNamesRegex.test(name)) {
-			errors.name = 'Имя может содержать только буквы и разделительные символы';
-			valid = false;
-		}
-
-		if (!phoneRegex.test(phone)) {
-			errors.phone = 'Пожалуйста, введите корректный номер телефона';
-			valid = false;
-		}
-
-		if (!properNamesRegex.test(country)) {
-			errors.country = 'Название страны может содержать только буквы и разделительные символы';
-			valid = false;
-		}
+		errors.permissionIsNotValid = !permission;
+		errors.nameIsNotValid = !properNamesRegex.test(name);
+		errors.phoneIsNotValid = !phoneRegex.test(phone);
+		errors.countryIsNotValid = !properNamesRegex.test(country);
 
 		setFormErrors(errors);
-		return valid;
+
+		return !(
+			errors.permissionIsNotValid || errors.nameIsNotValid || 
+			errors.phoneIsNotValid || errors.countryIsNotValid
+		);
 	};
 
 	return (
 		<form className={styles.form} onSubmit={handleSubmit}>
+
 			<div className={styles.formHeader}>
 				<h2>Контактная форма</h2>
 				<p>Заполните форму и мы свяжемся с вами в ближайшее время</p>
-				{isSubmitted && <div className={styles.success}>Форма отправлена!</div>}
+				<CSSTransition
+					in={isSubmitted}
+					timeout={300}
+					classNames={fadeClassNames}
+					unmountOnExit
+				>
+					<div className={styles.success}>Форма отправлена!</div>
+				</CSSTransition>
 			</div>
+
 			<div className={styles.formGroup}>
-				<label htmlFor="name">Имя:</label>
+				<label htmlFor='name'>Имя:</label>
 				<input
-					type="text"
-					id="name"
+					type='text'
+					id='name'
 					value={name}
 					onChange={(e) => setName(e.target.value)}
 					placeholder='Введите свое имя'
 					required
 				/>
-				{formErrors.name && <div className={styles.error}>{formErrors.name}</div>}
+				<CSSTransition
+					in={formErrors.nameIsNotValid}
+					timeout={300}
+					classNames={fadeClassNames}
+					unmountOnExit
+				>
+					<div className={styles.error}>{errorTexts.name}</div>
+				</CSSTransition>
 			</div>
+
 			<div className={styles.formGroup}>
-				<label htmlFor="phone">Номер телефона:</label>
+				<label htmlFor='phone'>Номер телефона:</label>
 				<InputMask
-					mask="+7 (999) 999-99-99"
+					mask='+7 (999) 999-99-99'
 					value={phone}
 					onChange={(e) => setPhone(e.target.value)}
 					placeholder="+7 (___) ___-__-__"
 					required
 				/>
-				{formErrors.phone && <div className={styles.error}>{formErrors.phone}</div>}
+				<CSSTransition
+					in={formErrors.phoneIsNotValid}
+					timeout={300}
+					classNames={fadeClassNames}
+					unmountOnExit
+				>
+					<div className={styles.error}>{errorTexts.phone}</div>
+				</CSSTransition>
 			</div>
+
 			<div className={styles.formGroup}>
 				<label htmlFor="country">Страна:</label>
 				<input
@@ -91,8 +121,16 @@ function ContactForm() {
 					placeholder='Введите желаемую страну посещения'
 					required
 				/>
-				{formErrors.country && <div className={styles.error}>{formErrors.country}</div>}
+				<CSSTransition
+					in={formErrors.countryIsNotValid}
+					timeout={300}
+					classNames={fadeClassNames}
+					unmountOnExit
+				>
+					<div className={styles.error}>{errorTexts.country}</div>
+				</CSSTransition>
 			</div>
+
 			<div className={styles.formGroup}>
 				<label>
 					<input className={styles.checkbox}
@@ -103,7 +141,14 @@ function ContactForm() {
 					/>
 					<>Я даю согласие на <a href="index.html">обработку персональных данных</a></>
 				</label>
-				{formErrors.permission && <div className={styles.error}>{formErrors.permission}</div>}
+				<CSSTransition
+					in={formErrors.permissionIsNotValid}
+					timeout={300}
+					classNames={fadeClassNames}
+					unmountOnExit
+				>
+					<div className={styles.error}>{errorTexts.permission}</div>
+				</CSSTransition>
 			</div>
 			<button type="submit">Отправить</button>
 		</form >

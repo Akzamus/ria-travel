@@ -43,6 +43,12 @@
 			a {
 				text-decoration: underline;
 				color: #7f7fff;
+				transition: color 0.5s ease-in-out;
+
+				&:hover,
+				&:focus {
+					color: #5555ff;
+				}
 			}
 		}
 
@@ -55,16 +61,13 @@
 			&:focus {
 				outline: none;
 				border-color: #7f7fff;
-
-				animation: input 0.9s ease-in-out forwards;
+				animation: scale 0.9s ease-in-out forwards;
 			}
 		}
 
 		.error {
 			color: red;
 			margin-top: 4px;
-
-			animation: appearance 0.7s ease-in-out forwards;
 		}
 	}
 
@@ -77,8 +80,10 @@
 		color: #fff;
 		font-size: 16px;
 		cursor: pointer;
+		transition: background-color 0.5s ease-in-out;
 
-		&:hover {
+		&:hover,
+		&:focus {
 			background-color: #5555ff;
 		}
 
@@ -115,18 +120,7 @@
 	}
 }
 
-@keyframes appearance {
-	from {
-		opacity: 0;
-		transform: translateY(-10px);
-	}
-	to {
-		opacity: 1;
-		transform: translateY(0);
-	}
-}
-
-@keyframes input {
+@keyframes scale {
 	from {
 		opacity: 0.5;
 		transform: scale(0.992);
@@ -135,4 +129,22 @@
 		opacity: 1;
 		transform: scale(1);
 	}
+}
+
+.fadeEnter {
+	opacity: 0;
+}
+
+.fadeEnterActive {
+	opacity: 1;
+	transition: opacity 300ms ease-in-out;
+}
+
+.fadeExit {
+	opacity: 1;
+}
+
+.fadeExitActive {
+	opacity: 0;
+	transition: opacity 300ms ease-in-out;
 }
