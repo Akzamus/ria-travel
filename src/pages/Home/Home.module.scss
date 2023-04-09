@@ -1,8 +1,7 @@
-.advantagesHeading {
-	font-size: 2rem;
-	font-weight: bold;
-	text-align: center;
-	margin-top: 30px;
+.carouselContainer {
+	width: 100%;
+	height: 600px;
+	margin: 0 auto;
 }
 
 .advantages {
@@ -15,9 +14,5 @@
 @media (max-width: 768px) {
 	.advantages {
 		padding: 10px;
-	}
-
-	.advantagesHeading {
-		font-size: 1.7rem;
 	}
 }

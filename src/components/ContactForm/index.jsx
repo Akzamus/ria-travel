@@ -25,7 +25,7 @@ function ContactForm() {
 		country: 'Название страны может содержать только буквы и разделительные символы'
 	}
 
-	const properNamesRegex = /^[\p{L}\s'\-]+$/u;
+	const properNamesRegex = /^[\p{L}\s'-]+$/u;
 	const phoneRegex = /^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$/;
 
 	const handleSubmit = (e) => {

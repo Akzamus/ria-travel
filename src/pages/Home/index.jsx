@@ -1,5 +1,16 @@
-import styles from './Advantages.module.scss';
-import Advantage from '../Advantage';
+import Advantage from '../../components/Advantage';
+import Carousel from '../../components/Carousel';
+import CompanyBanner from '../../components/CompanyBanner';
+import ContactForm from '../../components/ContactForm';
+import styles from './Home.module.scss'
+
+const slides = [
+	{ url: 'https://images.unsplash.com/photo-1489516408517-0c0a15662682?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80', title: "Дубаи" },
+	{ url: 'https://images.unsplash.com/photo-1499092346589-b9b6be3e94b2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80', title: "Америка" },
+	{ url: 'https://images.unsplash.com/photo-1614505241498-80a3ec936595?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1211&q=80', title: "Мальдивы" },
+	{ url: 'https://images.unsplash.com/photo-1499856871958-5b9627545d1a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1120&q=80', title: "Франция" },
+	{ url: 'https://images.unsplash.com/photo-1533656338503-b22f63e96cd8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1073&q=80', title: "Италия" },
+];
 
 const advantages = [
 	{
@@ -34,10 +45,12 @@ const advantages = [
 	}
 ]
 
-function Advantages() {
+function Home() {
 	return (
 		<>
-			<h2 className={styles.advantagesHeading}>Почему выбирают нас</h2>
+			<CompanyBanner />
+
+			<h2 className='heading'>Почему выбирают нас</h2>
 			<div className={styles.advantages}>
 				{
 					advantages.map(
@@ -51,8 +64,15 @@ function Advantages() {
 					)
 				}
 			</div>
+
+      <h2 className='heading'>Популярны места</h2>
+      <div className={styles.carouselContainer}>
+        <Carousel slides={slides} />
+      </div>
+
+			<ContactForm />
 		</>
 	);
 }
 
-export default Advantages;
+export default Home;
