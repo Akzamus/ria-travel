@@ -50,6 +50,15 @@ function About() {
 					)
 				}
     </div>
+		<h2 className='heading'>Расположение офиса</h2>
+		<h4 className={styles.location}>г. Алматы, ул. Байзакова 303, офис 108</h4>
+		<a href='https://yandex.kz/maps/162/almaty/?ll=76.915365%2C43.230274&mode=usermaps&source=constructorLink&um=constructor%3A64beb2d8562b1f5e8f31c5c2aaa6f5e15adecea9ce7616c95867d65a38b6782a&z=18'>
+			<div
+				className={styles.mapBox} 
+				style={{backgroundImage: 'url(/img/map.jpg)'}}
+			>
+			</div>
+		</a>
 		</>
 	);
 }

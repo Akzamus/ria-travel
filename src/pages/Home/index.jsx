@@ -1,7 +1,7 @@
 import Advantage from '../../components/Advantage';
 import Carousel from '../../components/Carousel';
-import CompanyBanner from '../../components/CompanyBanner';
 import ContactForm from '../../components/ContactForm';
+import SocialNetworks from '../../components/SocialNetworks';
 import styles from './Home.module.scss'
 
 const slides = [
@@ -43,12 +43,47 @@ const advantages = [
 		title: 'Любовь к нашим клиентам',
 		text: 'Мы искренне уважаем и ценим каждого нашего клиента и делаем все возможное, чтобы сделать их путешествие незабываемым и приятным.'
 	}
-]
+];
+
+const socialNetworks = [
+	{
+		id: 1,
+		url: 'https://api.whatsapp.com/send?phone=77788719777',
+		icon: 'bi bi-whatsapp'
+	},
+	{
+		id: 2,
+		url: 'https://instagram.com/ria.travel_kz?igshid=YmMyMTA2M2Y=',
+		icon: 'bi bi-instagram'
+	},
+	{
+		id: 3,
+		url: 'https://t.me/riatrv',
+		icon: 'bi bi-telegram'
+	},
+	{
+		id: 4,
+		url: 'tel:+7 778 871 9777',
+		icon: 'bi bi-telephone-fill'
+	},
+	{
+		id: 5,
+		url: 'https://yandex.kz/maps/162/almaty/?ll=76.915365%2C43.230274&mode=usermaps&source=constructorLink&um=constructor%3A64beb2d8562b1f5e8f31c5c2aaa6f5e15adecea9ce7616c95867d65a38b6782a&z=18',
+		icon: 'bi bi-geo-alt-fill'
+	},
+];
 
 function Home() {
 	return (
 		<>
-			<CompanyBanner />
+			<div className={styles.companyBanner} style={{ backgroundImage: 'url(/img/bannerBackground.jpg)' }}>
+				<h2>RIA TRAVEL</h2>
+				<p>
+					RIA TRAVEL – турагентство с 10 летним стажем и полным циклом сопровождения каждого туриста!
+					Сервис компании предусматривает поддержку менеджера 24 часа в сутки 7 дней в неделю.
+				</p>
+				<SocialNetworks list={socialNetworks}/>
+			</div >
 
 			<h2 className='heading'>Почему выбирают нас</h2>
 			<div className={styles.advantages}>
