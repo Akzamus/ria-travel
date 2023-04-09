@@ -1,0 +1,31 @@
+.socialNetworkIcons {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+
+	i {
+		font-size: 1.8rem;
+		margin-right: 5px;
+		margin-left: 5px;
+
+		&::before {
+			transition: all 0.3s ease-in-out;
+		}
+
+		&:hover::before {
+			color: #ffa500;
+		}
+	}
+
+	a {
+		margin-right: 20px;
+	}
+}
+
+@media (max-width: 768px) {
+	.socialIcons {
+		a {
+			margin: 0 10px;
+		}
+	}
+}
