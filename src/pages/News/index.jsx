@@ -14,14 +14,12 @@ function News({ posts }) {
 								<img src={post.image} alt={post.title} />
 							</div>
 							<div className={styles.postContent}>
-								<h2>{post.title}</h2>
+								<h3>{post.title}</h3>
 								<p>{post.textInPreview}</p>
 							</div>
-							{
-								post.hasTextInDetails ? (
-									<Link className='blueButton' to={`/news/${post.id}`}>Подробнее</Link>
-								) : null
-							}
+							<div className={styles.buttonContainer}>
+								<Link className='blueButton' to={`/news/${post.id}`}>Подробнее</Link> 
+							</div>
 						</div>
 					)
 				)

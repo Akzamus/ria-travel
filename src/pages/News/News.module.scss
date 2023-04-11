@@ -38,24 +38,41 @@
 			display: flex;
 			flex-direction: column;
 			align-items: flex-start;
-			padding: 20px;
+			padding: 10px 20px;
+			height: 100%;
 
-			h2 {
+			h3 {
 				margin: 0;
-				font-size: 1.2rem;
+				font-size: 1.4rem;
 				font-weight: bold;
 				text-align: left;
 			}
 
 			p {
+				display: -webkit-box;
+				-webkit-box-orient: vertical;
+				-webkit-line-clamp: 3;
+				hyphens: auto;
+				word-wrap: break-word;
+				overflow: hidden;
 				margin: 10px 0 0;
 				text-align: left;
+				font-size: 1.1rem;
 			}
 		}
 
-		a {
-			margin-top: auto;
-			border-radius: 0 0 10px 10px;
+		.buttonContainer {
+			display: flex;
+			flex-direction: row;
+			align-self: flex-end;
+			height: auto;
+
+			a {
+				padding: 3px;
+				width: 110px;
+				margin: 0 15px 15px 0;
+				border-radius: 20px;
+			}
 		}
 	}
 

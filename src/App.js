@@ -56,48 +56,42 @@ const posts = [
 		title: "Заголовок поста 1",
 		image: "https://images.unsplash.com/photo-1471922694854-ff1b63b20054?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YmVhdXRpZnVsfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60",
 		textInPreview: "Текст для предпросмотра 1",
-		textInDetails: "Текст для полной версии 1",
-		hasTextInDetails: false
+		textInDetails: "Текст для полной версии 1"
 	},
 	{
 		id: 2,
 		title: "Заголовок поста 2",
 		image: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8ZnJhbmNlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60",
-		textInPreview: "Текст для предпросмотра 2",
-		textInDetails: "Текст для полной версии 2",
-		hasTextInDetails: true
+		textInPreview: "Текст для предпросмотра 2 Текст для предпросмотра 2 Текст для предпросмотра 2 Текст для предпросмотра 2 Текст для предпросмотра 2 Текст для предпросмотра 2 Текст для предпросмотра 2 Текст для предпросмотра 2",
+		textInDetails: "Текст для полной версии 2"
 	},
 	{
 		id: 3,
 		title: "Заголовок поста 3",
 		image: "https://images.unsplash.com/photo-1551866442-64e75e911c23?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80",
 		textInPreview: "Текст для предпросмотра 3",
-		textInDetails: "Текст для полной версии 3",
-		hasTextInDetails: true
+		textInDetails: "Текст для полной версии 3"
 	},
 	{
 		id: 4,
 		title: "Заголовок поста 4",
 		image: "https://images.unsplash.com/photo-1566232392379-afd9298e6a46?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8c3BhbmlzaHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=600&q=60",
 		textInPreview: "Текст для предпросмотра 4",
-		textInDetails: "Текст для полной версии 4",
-		hasTextInDetails: true
+		textInDetails: "Текст для полной версии 4"
 	},
 	{
 		id: 5,
 		title: "Заголовок поста 5",
 		image: "https://images.unsplash.com/photo-1606922183036-62e19495eaab?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8amFwYW4lMjBwbGFjZXN8ZW58MHx8MHx8&auto=format&fit=crop&w=600&q=60",
 		textInPreview: "Текст для предпросмотра 5",
-		textInDetails: "Текст для полной версии 5",
-		hasTextInDetails: false
+		textInDetails: "Текст для полной версии 5"
 	},
 	{
 		id: 6,
 		title: "Заголовок поста 6",
 		image: "https://images.unsplash.com/photo-1676917349790-adde3abfbde5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTJ8fGphcGFuJTIwcGxhY2VzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60",
 		textInPreview: "Текст для предпросмотра 6",
-		textInDetails: "Текст для полной версии 6",
-		hasTextInDetails: true
+		textInDetails: "Текст для полной версии 6"
 	}
 ];
 
