@@ -8,13 +8,12 @@ footer {
 
 	.address {
 		padding-left: 150px;
-		font-size: 1rem;
 	}
 
 	.box {
 		display: flex;
-		justify-content: space-between;
 		flex-wrap: wrap;
+		justify-content: space-between;
 		padding: 20px 150px 10px 150px;
 
 		.phoneNumbers {
@@ -27,11 +26,8 @@ footer {
 
 			ul {
 				list-style: none;
-				margin: 0;
-				padding: 0;
 
 				li {
-					font-size: 1rem;
 					margin-bottom: 5px;
 				}
 			}
@@ -44,15 +40,12 @@ footer {
 			}
 		}
 	}
-}
-@media (max-width: 1000px) {
-	footer {
+
+	@media (max-width: 1000px) {
 		border-radius: 0;
 	}
-}
 
-@media (max-width: 767px) {
-	footer {
+	@media (max-width: 767px) {
 		.address {
 			padding: 0;
 			text-align: center;
@@ -66,12 +59,10 @@ footer {
 			.phoneNumbers {
 				margin-right: 0;
 				margin-bottom: 20px;
-				text-align: center;
 			}
 
 			.socialMedia {
 				margin-bottom: 20px;
-				text-align: center;
 
 				a {
 					margin: 10px !important;
@@ -80,3 +71,4 @@ footer {
 		}
 	}
 }
+

@@ -1,7 +1,6 @@
 .form {
 	display: flex;
 	flex-direction: column;
-	width: auto;
 	padding: 50px 250px;
 
 	.error {
@@ -11,6 +10,7 @@
 
 	.formHeader {
 		text-align: center;
+
 		h2 {
 			font-size: 2rem;
 			font-weight: bold;
@@ -19,7 +19,6 @@
 		}
 
 		p {
-			font-size: 16px;
 			margin-bottom: 20px;
 		}
 
@@ -27,14 +26,31 @@
 			color: green;
 			font-size: 1.2rem;
 			font-weight: bold;
-			margin-top: 1rem;
-
-			animation: appearance 0.7s ease-in-out forwards;
 		}
 	}
 
 	button {
 		margin-top: 20px;
+	}
+
+	label {
+		margin-bottom: 5px;
+		font-weight: bold;
+
+		.checkbox {
+			margin-right: 10px;
+		}
+
+		a {
+			text-decoration: underline;
+			color: #7f7fff;
+			transition: color 0.5s ease-in-out;
+
+			&:hover,
+			&:focus {
+				color: #5555ff;
+			}
+		}
 	}
 
 	@media (max-width: 1000px) {

@@ -1,35 +1,35 @@
 import React from 'react';
 import styles from './Navbar.module.scss'
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 function Navbar() {
-	const [isClicked, setIsClicked] = React.useState(false);
+    const [isClicked, setIsClicked] = React.useState(false);
 
-	return (
-		<>
-			<nav>
-				<Link to="/">
-					<img width={120} height={80} src="/img/logo.png" alt="Logo"></img>
-				</Link>
+    return (
+        <>
+            <nav>
+                <Link to="/">
+                    <img width={120} height={80} src="/img/logo.png" alt="Logo"></img>
+                </Link>
 
-				<div>
-					<ul className={`${styles.menu} ${isClicked ? {} : styles.close}`}>
-						<li><Link to="/">Главная</Link></li>
-						<li><Link to="/about">О компании</Link></li>
-						<li><Link to="/news">Новости</Link></li>
-						<li><Link to="/reviews">Отзывы</Link></li>
-					</ul>
-				</div>
+                <div>
+                    <ul className={`${styles.menu} ${isClicked ? {} : styles.close}`}>
+                        <li><Link to="/">Главная</Link></li>
+                        <li><Link to="/about">О компании</Link></li>
+                        <li><Link to="/news">Новости</Link></li>
+                        <li><Link to="/reviews">Отзывы</Link></li>
+                    </ul>
+                </div>
 
-				<div className={styles.mobile}>
-					<i
-						onClick={() => setIsClicked(!isClicked)}
-						className={`${styles.bar} ${isClicked ? 'bi bi-x' : 'bi bi-list'}`}
-					></i>
-				</div>
-			</nav >
-		</>
-	);
+                <div className={styles.mobile}>
+                    <i
+                        onClick={() => setIsClicked(!isClicked)}
+                        className={`${styles.bar} ${isClicked ? 'bi bi-x' : 'bi bi-list'}`}
+                    ></i>
+                </div>
+            </nav>
+        </>
+    );
 }
 
 export default Navbar;

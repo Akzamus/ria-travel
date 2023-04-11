@@ -5,27 +5,15 @@
 
 	i {
 		font-size: 1.8rem;
-		margin-right: 5px;
-		margin-left: 5px;
+		margin: 0 5px;
+		transition: all 0.5s ease-in-out;
 
-		&::before {
-			transition: all 0.3s ease-in-out;
-		}
-
-		&:hover::before {
+		&:hover {
 			color: #ffa500;
 		}
 	}
 
 	a {
 		margin-right: 20px;
-	}
-}
-
-@media (max-width: 768px) {
-	.socialIcons {
-		a {
-			margin: 0 10px;
-		}
 	}
 }

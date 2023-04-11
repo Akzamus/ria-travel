@@ -6,28 +6,13 @@
 	label {
 		margin-bottom: 5px;
 		font-weight: bold;
-
-		.checkbox {
-			margin-right: 10px;
-		}
-
-		a {
-			text-decoration: underline;
-			color: #7f7fff;
-			transition: color 0.5s ease-in-out;
-
-			&:hover,
-			&:focus {
-				color: #5555ff;
-			}
-		}
 	}
 
 	input {
 		padding: 8px;
 		border: 1px solid #ccc;
 		border-radius: 5px;
-		font-size: 16px;
+		font-size: 1rem;
 
 		&:focus {
 			outline: none;

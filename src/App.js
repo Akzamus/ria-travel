@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import {Routes, Route} from 'react-router-dom';
 import Navbar from "./components/Navbar";
 import Home from './pages/Home';
 import About from './pages/About';
@@ -98,14 +98,14 @@ const posts = [
 function App() {
 	return (
 		<div className='wrapper'>
-			<Navbar />
+			<Navbar/>
 			<Routes>
-				<Route path='/' element={<Home socialNetworks={socialNetworks} />} />
-				<Route path='/about' element={<About />} />
-				<Route path='/news' element={<News posts={posts} />} />
-				<Route path='/news/:id' element={<Post posts={posts} />} />
+				<Route path='/' element={<Home socialNetworks={socialNetworks}/>}/>
+				<Route path='/about' element={<About/>}/>
+				<Route path='/news' element={<News posts={posts}/>}/>
+				<Route path='/news/:id' element={<Post posts={posts}/>}/>
 			</Routes>
-			<Footer phones={phones} socialNetworks={socialNetworks} />
+			<Footer phones={phones} socialNetworks={socialNetworks}/>
 		</div>
 	);
 }
