@@ -1,7 +1,14 @@
 import { CSSTransition } from 'react-transition-group';
 import React from 'react';
 import styles from './ContactForm.module.scss'
-import InputMask from "react-input-mask";
+import Input from '../Input';
+
+const fadeClassNames = {
+	enter: 'fadeEnter',
+	enterActive: 'fadeEnterActive',
+	exit: 'fadeExit',
+	exitActive: 'fadeExitActive'
+}; 
 
 function ContactForm() {
 	const [name, setName] = React.useState('');
@@ -10,13 +17,6 @@ function ContactForm() {
 	const [formErrors, setFormErrors] = React.useState({});
 	const [permission, setPermission] = React.useState(false);
 	const [isSubmitted, setIsSubmitted] = React.useState(false);
-
-	const fadeClassNames = {
-		enter: styles.fadeEnter,
-		enterActive: styles.fadeEnterActive,
-		exit: styles.fadeExit,
-		exitActive: styles.fadeExitActive,
-	};
 
 	const errorTexts= {
 		permission: 'Для отправки формы нужно ваше соглашение',
@@ -72,74 +72,53 @@ function ContactForm() {
 				</CSSTransition>
 			</div>
 
-			<div className={styles.formGroup}>
-				<label htmlFor='name'>Имя:</label>
-				<input
-					type='text'
-					id='name'
-					value={name}
-					onChange={(e) => setName(e.target.value)}
-					placeholder='Введите свое имя'
-					required
-				/>
-				<CSSTransition
-					in={formErrors.nameIsNotValid}
-					timeout={300}
-					classNames={fadeClassNames}
-					unmountOnExit
-				>
-					<div className={styles.error}>{errorTexts.name}</div>
-				</CSSTransition>
-			</div>
+			<Input
+				id='name'
+				label='Имя:'
+				value={name}
+				type='text'
+				onChange={(e) => setName(e.target.value)}
+				placeholder='Введите свое имя'
+				errorText={errorTexts.name}
+				isValid={!formErrors.nameIsNotValid}
+				animations={fadeClassNames}
+			/>
 
-			<div className={styles.formGroup}>
-				<label htmlFor='phone'>Номер телефона:</label>
-				<InputMask
-					mask='+7 (999) 999-99-99'
-					value={phone}
-					onChange={(e) => setPhone(e.target.value)}
-					placeholder="+7 (___) ___-__-__"
-					required
-				/>
-				<CSSTransition
-					in={formErrors.phoneIsNotValid}
-					timeout={300}
-					classNames={fadeClassNames}
-					unmountOnExit
-				>
-					<div className={styles.error}>{errorTexts.phone}</div>
-				</CSSTransition>
-			</div>
+			<Input
+				id='phone'
+				label='Номер телефона:'
+				mask='+7 (999) 999-99-99'
+				value={phone}
+				onChange={(e) => setPhone(e.target.value)}
+				placeholder='+7 (___) ___-__-__'
+				required
+				errorText={errorTexts.phone}
+				isValid={!formErrors.phoneIsNotValid}
+				animations={fadeClassNames}
+			/>
 
-			<div className={styles.formGroup}>
-				<label htmlFor="country">Страна:</label>
-				<input
-					type="text"
-					id="country"
-					value={country}
-					onChange={(e) => setCountry(e.target.value)}
-					placeholder='Введите желаемую страну посещения'
-					required
-				/>
-				<CSSTransition
-					in={formErrors.countryIsNotValid}
-					timeout={300}
-					classNames={fadeClassNames}
-					unmountOnExit
-				>
-					<div className={styles.error}>{errorTexts.country}</div>
-				</CSSTransition>
-			</div>
+			<Input
+				id='country'
+				label='Страна:'
+				value={country}
+				onChange={(e) => setCountry(e.target.value)}
+				placeholder='Введите желаемую страну посещения'
+				required
+				errorText={errorTexts.country}
+				isValid={!formErrors.countryIsNotValid}
+				animations={fadeClassNames}
+			/>
+
 
 			<div className={styles.formGroup}>
 				<label>
 					<input className={styles.checkbox}
-						type="checkbox"
-						id="permission"
+						type='checkbox'
+						id='permission'
 						checked={permission}
 						onChange={() => setPermission(!permission)}
 					/>
-					<>Я даю согласие на <a href="index.html">обработку персональных данных</a></>
+					<> Я даю согласие на <a href="index.html">обработку персональных данных</a></>
 				</label>
 				<CSSTransition
 					in={formErrors.permissionIsNotValid}
@@ -150,7 +129,8 @@ function ContactForm() {
 					<div className={styles.error}>{errorTexts.permission}</div>
 				</CSSTransition>
 			</div>
-			<button type="submit">Отправить</button>
+
+			<button className='blueButton' type='submit'>Отправить</button>
 		</form >
 	);
 }

@@ -4,6 +4,11 @@
 	width: auto;
 	padding: 50px 250px;
 
+	.error {
+		color: red;
+		margin-top: 4px;
+	}
+
 	.formHeader {
 		text-align: center;
 		h2 {
@@ -28,69 +33,8 @@
 		}
 	}
 
-	.formGroup {
-		display: flex;
-		flex-direction: column;
-		margin-bottom: 15px;
-
-		label {
-			margin-bottom: 5px;
-			font-weight: bold;
-
-			.checkbox {
-				margin-right: 10px;
-			}
-
-			a {
-				text-decoration: underline;
-				color: #7f7fff;
-				transition: color 0.5s ease-in-out;
-
-				&:hover,
-				&:focus {
-					color: #5555ff;
-				}
-			}
-		}
-
-		input {
-			padding: 8px;
-			border: 1px solid #ccc;
-			border-radius: 5px;
-			font-size: 16px;
-
-			&:focus {
-				outline: none;
-				border-color: #7f7fff;
-				animation: scale 0.9s ease-in-out forwards;
-			}
-		}
-
-		.error {
-			color: red;
-			margin-top: 4px;
-		}
-	}
-
 	button {
-		padding: 10px;
 		margin-top: 20px;
-		background-color: #7f7fff;
-		border: none;
-		border-radius: 5px;
-		color: #fff;
-		font-size: 16px;
-		cursor: pointer;
-		transition: background-color 0.5s ease-in-out;
-
-		&:hover,
-		&:focus {
-			background-color: #5555ff;
-		}
-
-		&:active {
-			background-color: #3333ff;
-		}
 	}
 
 	@media (max-width: 1000px) {
@@ -101,51 +45,9 @@
 		max-width: 100%;
 		padding: 30px;
 
-		.form-group {
-			margin-bottom: 10px;
-
-			label {
-				font-size: 14px;
-			}
-
-			input {
-				padding: 5px;
-				font-size: 14px;
-			}
-		}
-
 		button {
 			padding: 8px;
 			font-size: 14px;
 		}
 	}
-}
-
-@keyframes scale {
-	from {
-		opacity: 0.5;
-		transform: scale(0.992);
-	}
-	to {
-		opacity: 1;
-		transform: scale(1);
-	}
-}
-
-.fadeEnter {
-	opacity: 0;
-}
-
-.fadeEnterActive {
-	opacity: 1;
-	transition: opacity 300ms ease-in-out;
-}
-
-.fadeExit {
-	opacity: 1;
-}
-
-.fadeExitActive {
-	opacity: 0;
-	transition: opacity 300ms ease-in-out;
 }

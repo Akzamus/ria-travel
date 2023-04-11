@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import styles from './Carousel.module.scss';
 
 const Carousel = ({ slides }) => {
@@ -22,7 +22,7 @@ const Carousel = ({ slides }) => {
 
   return (
     <div className={styles.slider}>
-			<h3>{slides[currentIndex].title}</h3>
+      <h3>{slides[currentIndex].title}</h3>
       <div>
         <div onClick={goToPrevious} className={styles.leftArrow}>
           <i className='bi bi-chevron-left'></i>
@@ -37,7 +37,7 @@ const Carousel = ({ slides }) => {
 					slides.map((slide, index) => (
 							<div
 								className={`${styles.dot} ${index === currentIndex && styles.active}`}
-								key={index}
+								key={slide.id}
 								onClick={() => goToSlide(index)}
 							>
 								<i className="bi bi-dot"></i>

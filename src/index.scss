@@ -33,6 +33,27 @@ body {
 	font-family: "Lobster", cursive;
 }
 
+.blueButton {
+	background-color: #7f7fff;
+	color: white;
+	text-align: center;
+	padding: 10px;
+	border-radius: 5px;
+	transition: background-color 0.5s ease-in-out;
+	font-size: 1rem;
+	border: none;
+	cursor: pointer;
+
+	&:hover,
+	&:focus {
+		background-color: #5555ff;
+	}
+
+	&:active {
+		background-color: #3333ff;
+	}
+}
+
 @media (max-width: 1000px) {
 	.wrapper {
 		margin-top: 0;
@@ -46,4 +67,22 @@ body {
 	.heading {
 		font-size: 1.7rem;
 	}
+}
+
+.fadeEnter {
+	opacity: 0;
+}
+
+.fadeEnterActive {
+	opacity: 1;
+	transition: opacity 300ms ease-in-out;
+}
+
+.fadeExit {
+	opacity: 1;
+}
+
+.fadeExitActive {
+	opacity: 0;
+	transition: opacity 300ms ease-in-out;
 }
