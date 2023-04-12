@@ -1,13 +1,14 @@
 import React from 'react';
 import {useParams, Link} from 'react-router-dom';
 import styles from './Post.module.scss';
+import NotFound from '../NotFound';
 
 function Post({posts}) {
     const {id} = useParams();
     const post = posts.find((post) => post.id === Number(id));
 
     if (!post) {
-        return <div>Post not found.</div>;
+        return <NotFound/>;
     }
 
     const {title, image, textInDetails} = post;
