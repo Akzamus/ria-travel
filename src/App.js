@@ -7,6 +7,7 @@ import News from './pages/News';
 import Post from './pages/Post';
 import React from 'react';
 import NotFound from './pages/NotFound';
+import Reviews from './pages/Reviews';
 
 const phones = [
 	{
@@ -105,6 +106,7 @@ function App() {
 				<Route path='/about' element={<About />} />
 				<Route path='/news' element={<News posts={posts} />} />
 				<Route path='/news/:id' element={<Post posts={posts} />} />
+				<Route path='/reviews' element={<Reviews />} />
 				<Route path='*' element={<NotFound />} />
 			</Routes>
 			<Footer phones={phones} socialNetworks={socialNetworks} />
