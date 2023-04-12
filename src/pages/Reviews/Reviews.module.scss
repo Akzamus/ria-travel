@@ -1,0 +1,45 @@
+.reviews {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 30px;
+	padding-top: 70px;
+
+	.review {
+		display: flex;
+		width: 100%;
+		max-width: 800px;
+		padding: 20px;
+		border-radius: 20px;
+		box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+		transition: transform 0.3s ease-in-out;
+
+		&:hover {
+			transform: scale(1.02);
+		}
+
+		.photo {
+			width: 100px;
+			height: 100px;
+			object-fit: cover;
+			border-radius: 50%;
+			margin-right: 20px;
+		}
+
+		.text {
+			display: flex;
+			flex-direction: column;
+
+			.name {
+				font-size: 1.3rem;
+				font-weight: bold;
+				text-transform: capitalize;
+				margin-bottom: 10px;
+			}
+
+			.reviewText {
+				font-size: 1rem;
+			}
+		}
+	}
+}
