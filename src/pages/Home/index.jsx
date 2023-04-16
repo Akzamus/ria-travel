@@ -1,4 +1,4 @@
-import Advantage from '../../components/Advantage';
+import AdvantageCard from '../../components/AdvantageCard';
 import Carousel from '../../components/Carousel';
 import ContactForm from '../../components/ContactForm';
 import SocialNetworks from '../../components/SocialNetworks';
@@ -82,7 +82,7 @@ function Home({socialNetworks}) {
                 {
                     advantages.map(
                         (advantage, index) =>
-                            <Advantage
+                            <AdvantageCard
                                 key={index}
                                 icon={advantage.icon}
                                 title={advantage.title}

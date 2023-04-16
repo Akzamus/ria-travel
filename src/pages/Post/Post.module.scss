@@ -21,6 +21,10 @@
 			font-size: 2.5rem;
 			font-weight: bold;
 			font-family: "Lobster", cursive;
+
+			@media (max-width: 500px) {
+				font-size: 2rem;
+			}
 		}
 	}
 
@@ -45,6 +49,10 @@
 			font-size: 1.3rem;
 			margin-bottom: 20px;
 			word-wrap: break-word;
+
+			@media (max-width: 500px) {
+				font-size: 1rem;
+			}
 		}
 	}
 }

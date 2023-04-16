@@ -24,7 +24,7 @@ const employees = [
         id: 4,
         name: 'Дуйсенбаев Тамирлан',
         experience: 20,
-        photo: 'https://randomuser.me/api/portraits/men/1.jpg',
+        photo: 'https://randomuser.me/api/portraits/men/11.jpg',
     }
 ];
 

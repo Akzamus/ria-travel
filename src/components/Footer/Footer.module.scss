@@ -29,6 +29,11 @@ footer {
 
 				li {
 					margin-bottom: 5px;
+					transition: all 0.5s ease-in-out;
+
+					&:hover {
+						color: #ffa500;
+					}
 				}
 			}
 		}
@@ -71,4 +76,3 @@ footer {
 		}
 	}
 }
-

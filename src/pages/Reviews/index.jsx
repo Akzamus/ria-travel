@@ -16,13 +16,13 @@ const reviewsData = [
     },
     {
         id: 3,
-        name: "ВАСИЛИЙ ГРИГОРЬЕВИЧ",
+        name: "Василий Григорьевич",
         photo: "https://randomuser.me/api/portraits/men/22.jpg",
         text: "Большое спасибо, очень хорошо отдохнули в Египте. Солнце, море, песок, счастье. Поедем еще! ",
     },
 ];
 
-const Reviews = () => {
+function Reviews() {
     return (
         <div className={styles.reviews}>
             {reviewsData.map((review) => (
@@ -36,6 +36,6 @@ const Reviews = () => {
             ))}
         </div>
     );
-};
+}
 
 export default Reviews;
