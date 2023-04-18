@@ -13,3 +13,6 @@ class PostViewSet(viewsets.ModelViewSet):
             return PostListSerializer
         elif self.action == 'retrieve':
             return PostSerializer
+
+    def get_queryset(self):
+        return Post.objects.order_by('-created_at')[:8]

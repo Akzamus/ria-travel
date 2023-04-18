@@ -6,7 +6,8 @@ from .models import Post
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
-    list_display = ('title', 'preview_text', 'photo_tag')
+    list_display = ('title', 'preview_text', 'created_at', 'photo_tag')
+    sortable_by = ('created_at',)
     search_fields = ('title',)
 
     def photo_tag(self, obj):
