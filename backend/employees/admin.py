@@ -7,7 +7,6 @@ from .models import Employee
 @admin.register(Employee)
 class EmployeeAdmin(admin.ModelAdmin):
     list_display = ('name', 'experience', 'photo_tag')
-    list_filter = ('experience',)
     search_fields = ('name',)
 
     def photo_tag(self, obj):

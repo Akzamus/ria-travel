@@ -7,3 +7,8 @@ i {
     width: 100px;
     border-radius: 50%;
 }
+
+.post-image {
+    width: 300px;
+    border-radius: 10px;
+}

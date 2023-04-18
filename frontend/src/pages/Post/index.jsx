@@ -23,18 +23,7 @@ function Post({posts}) {
             </div>
             <div className={styles.post}>
                 <img src={image} alt={title} className={styles.image}/>
-                <p className={styles.text}>{textInDetails} Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Quidem aperiam alias reiciendis? Accusamus possimus porro, ipsa qui magnam, ipsam quidem quo neque
-                    autem quae et vitae atque, minima sed fuga. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Rerum iste praesentium beatae dolor nostrum iusto, hic alias ipsum architecto consequatur sequi,
-                    velit ipsam? Necessitatibus recusandae repudiandae minus? Architecto, quis laboriosam. Lorem ipsum
-                    dolor sit amet consectetur adipisicing elit. Autem tempora praesentium cum reiciendis veritatis.
-                    Sint sunt accusantium quod ipsam ratione incidunt quam quasi. Natus velit sunt rerum officiis,
-                    expedita et. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facere accusamus ducimus odit
-                    placeat. Consequatur repellat exercitationem, id ipsa magnam recusandae nulla ducimus beatae eum
-                    harum repudiandae numquam assumenda tempore asperiores? Lorem, ipsum dolor sit amet consectetur
-                    adipisicing elit. Earum reiciendis nesciunt incidunt fugit quos dicta accusamus temporibus eum neque
-                    doloribus suscipit libero nostrum voluptates, eveniet corporis, nemo ducimus? Ex, reprehenderit!</p>
+                <p className={styles.text}>{textInDetails}</p>
             </div>
         </div>
     );
