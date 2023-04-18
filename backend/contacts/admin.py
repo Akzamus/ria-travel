@@ -6,9 +6,9 @@ from .models import Link, PhoneNumber
 
 @admin.register(Link)
 class SocialLinkAdmin(admin.ModelAdmin):
-    list_display = ('name', 'icon_preview', 'shortened_url')
+    list_display = ('name', 'icon_tag', 'shortened_url')
 
-    def icon_preview(self, obj):
+    def icon_tag(self, obj):
         return format_html(f'<i class="{obj.icon}"></i>')
 
     def name(self, obj):
@@ -17,7 +17,7 @@ class SocialLinkAdmin(admin.ModelAdmin):
     def shortened_url(self, obj):
         return format_html('<a href="{0}" target="_blank">{1}</a>'.format(obj.url, obj.url[:50]))
 
-    icon_preview.short_description = 'Иконка'
+    icon_tag.short_description = 'Иконка'
     name.short_description = 'Название'
     shortened_url.short_description = 'URL'
 
