@@ -15,4 +15,9 @@ class PostViewSet(viewsets.ModelViewSet):
             return PostSerializer
 
     def get_queryset(self):
+        post_id = self.kwargs.get('pk')
+
+        if post_id:
+            return Post.objects.filter(id=post_id)
+        
         return Post.objects.order_by('-created_at')[:8]

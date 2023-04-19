@@ -1,7 +1,7 @@
 import AdvantageCard from '../../components/AdvantageCard';
 import Carousel from '../../components/Carousel';
 import ContactForm from '../../components/ContactForm';
-import SocialNetworks from '../../components/SocialNetworks';
+import Links from '../../components/Links';
 import styles from './Home.module.scss'
 
 const slides = [
@@ -65,7 +65,7 @@ const advantages = [
     }
 ];
 
-function Home({socialNetworks}) {
+function Home({links}) {
     return (
         <>
             <div className={styles.companyBanner} style={{backgroundImage: 'url(/img/bannerBackground.jpg)'}}>
@@ -74,7 +74,7 @@ function Home({socialNetworks}) {
                     RIA TRAVEL – турагентство с 10 летним стажем и полным циклом сопровождения каждого туриста!
                     Сервис компании предусматривает поддержку менеджера 24 часа в сутки 7 дней в неделю.
                 </p>
-                <SocialNetworks list={socialNetworks}/>
+                <Links list={links}/>
             </div>
 
             <h2 className='heading'>Почему выбирают нас</h2>

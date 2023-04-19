@@ -1,8 +1,8 @@
-import styles from './SocialNetworks.module.scss';
+import styles from './Links.module.scss';
 
-function SocialNetworks({list}) {
+function Links({list}) {
     return (
-        <div className={styles.socialNetworkIcons}>
+        <div className={styles.linksIcons}>
             {
                 list.map(
                     item =>
@@ -15,4 +15,4 @@ function SocialNetworks({list}) {
     );
 }
 
-export default SocialNetworks;
+export default Links;

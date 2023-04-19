@@ -11,11 +11,11 @@ function News({posts}) {
                     post => (
                         <div className={styles.post} key={post.id}>
                             <div className={styles.imageContainer}>
-                                <img src={post.image} alt={post.title}/>
+                                <img src={post.photo} alt={post.title}/>
                             </div>
                             <div className={styles.postContent}>
                                 <h3>{post.title}</h3>
-                                <p>{post.textInPreview}</p>
+                                <p>{post.previewText}</p>
                             </div>
                             <div className={styles.buttonContainer}>
                                 <Link className='blueButton' to={`/news/${post.id}`}>Подробнее</Link>

@@ -1,34 +1,20 @@
 import EmployeeCard from '../../components/EmployeeCard';
 import styles from './About.module.scss';
-
-const employees = [
-    {
-        id: 1,
-        name: 'Бактияркызы Анара',
-        experience: 3,
-        photo: '/img/workers/Anara.jpg',
-    },
-    {
-        id: 2,
-        name: 'Турысбекова Айнур',
-        experience: 12,
-        photo: '/img/workers/Ainura.jpg',
-    },
-    {
-        id: 3,
-        name: 'Ходжаева Жасмин',
-        experience: 2,
-        photo: '/img/workers/Jasmine.jpg',
-    },
-    {
-        id: 4,
-        name: 'Дуйсенбаев Тамирлан',
-        experience: 20,
-        photo: 'https://randomuser.me/api/portraits/men/11.jpg',
-    }
-];
+import React from "react";
+import axios from "axios";
 
 function About() {
+    const [employees, setEmployees] = React.useState([]);
+
+    React.useEffect(() => {
+        axios.get('http://localhost:8000/api/v1/employees/')
+            .then(response => {
+                setEmployees(response.data);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    }, []);
     return (
         <>
             <div className={styles.companyDescription}>

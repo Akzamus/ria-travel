@@ -4,12 +4,16 @@ from .models import Post
 
 
 class PostSerializer(serializers.ModelSerializer):
+    mainText = serializers.CharField(source='main_text')
+
     class Meta:
         model = Post
-        fields = ['title', 'photo', 'main_text']
+        fields = ['title', 'photo', 'mainText']
 
 
 class PostListSerializer(serializers.ModelSerializer):
+    previewText = serializers.CharField(source='preview_text')
+
     class Meta:
         model = Post
-        fields = ['id', 'title', 'photo', 'preview_text']
+        fields = ['id', 'title', 'photo', 'previewText']

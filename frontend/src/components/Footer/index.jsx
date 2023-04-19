@@ -1,8 +1,8 @@
 import React from "react";
 import styles from './Footer.module.scss';
-import SocialNetworks from "../SocialNetworks";
+import Links from "../Links";
 
-function Footer({phones, socialNetworks}) {
+function Footer({phones, links}) {
     return (
         <footer>
             <h4 className={styles.address}>г. Алматы, ул. Байзакова 303, офис 108</h4>
@@ -23,9 +23,9 @@ function Footer({phones, socialNetworks}) {
                         }
                     </ul>
                 </div>
-                <div className={styles.socialMedia}>
-                    <h3>Мы в социальных сетях</h3>
-                    <SocialNetworks list={socialNetworks.filter(i => !i.url.includes('tel:'))}/>
+                <div className={styles.linksMedia }>
+                    <h3>Нас можно найти в:</h3>
+                    <Links list={links}/>
                 </div>
             </div>
         </footer>
