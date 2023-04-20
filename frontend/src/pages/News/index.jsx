@@ -3,7 +3,6 @@ import styles from "./News.module.scss";
 import {Link} from "react-router-dom";
 
 function News({posts}) {
-
     return (
         <div className={styles.newsBlock}>
             {

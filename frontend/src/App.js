@@ -21,21 +21,21 @@ function App() {
 				setPhones(response.data);
 			})
 			.catch(error => {
-				console.log(error);
+				alert('Не удалось получить номера телефонов');
 			});
 		axios.get('http://localhost:8000/api/v1/links/')
 			.then(response => {
 				setLinks(response.data);
 			})
 			.catch(error => {
-				console.log(error);
+				alert('Не удалось получить ссылки');
 			});
 		axios.get('http://localhost:8000/api/v1/posts/')
 			.then(response => {
 				setPosts(response.data);
 			})
 			.catch(error => {
-				console.log(error);
+				alert('Не удалось получить посты');
 			});
 	}, []);
 

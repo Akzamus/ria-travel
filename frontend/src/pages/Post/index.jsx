@@ -6,7 +6,7 @@ import axios from 'axios';
 
 function Post() {
   const { id } = useParams();
-  const [post, setPost] = React.useState(null);
+  const [post, setPost] = React.useState({});
   const [loading, setLoading] = React.useState(true);
 
   React.useEffect(() => {

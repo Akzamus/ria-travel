@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'contacts.apps.ContactsConfig',
     'employees.apps.EmployeesConfig',
     'news.apps.NewsConfig',
+    'clients.apps.ClientsConfig',
 
     'rest_framework',
     'corsheaders',
