@@ -16,6 +16,7 @@ body {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	background-color: #e7f6ff;
+	color: #6c757d;
 }
 
 .wrapper {
@@ -28,7 +29,8 @@ body {
 
 .heading {
 	font-size: 2rem;
-	font-weight: bold;
+	color: #343a40;
+	font-weight: lighter;
 	text-align: center;
 	font-family: "Lobster", cursive;
 }

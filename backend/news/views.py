@@ -1,7 +1,7 @@
 from rest_framework import viewsets
 
-from .models import Post
-from .serializers import PostSerializer, PostListSerializer
+from .models import Post, PopularPlace
+from .serializers import PostSerializer, PostListSerializer, PopularPlaceListSerializer
 
 
 class PostViewSet(viewsets.ModelViewSet):
@@ -21,3 +21,17 @@ class PostViewSet(viewsets.ModelViewSet):
             return Post.objects.filter(id=post_id)
         
         return Post.objects.order_by('-created_at')[:8]
+
+
+class PopularPlaceViewSet(viewsets.ModelViewSet):
+    queryset = PopularPlace.objects.all()
+    serializer_class = PopularPlaceListSerializer
+    http_method_names = ['get']
+
+    def get_queryset(self):
+        popular_place_id = self.kwargs.get('pk')
+
+        if popular_place_id:
+            return Post.objects.filter(id=popular_place_id)
+
+        return PopularPlace.objects.filter(is_displayed=True)

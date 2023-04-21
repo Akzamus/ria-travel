@@ -47,6 +47,36 @@ class Post(models.Model):
 
     class Meta:
         verbose_name_plural = 'Посты'
+        verbose_name = 'Пост'
+
+
+class PopularPlace(models.Model):
+    id = models.AutoField(
+        primary_key=True
+    )
+    photo = models.ImageField(
+        null=False,
+        blank=False,
+        upload_to='places/',
+        verbose_name='Фото'
+    )
+    title = models.CharField(
+        max_length=255,
+        null=False,
+        blank=False,
+        verbose_name='Название'
+    )
+    is_displayed = models.BooleanField(
+        default=True,
+        verbose_name='Отображать'
+    )
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name_plural = 'Популярные места'
+        verbose_name = 'Популярное место'
 
 
 @receiver(post_delete, sender=Post)
@@ -54,3 +84,9 @@ def delete_post_photo(sender, instance, **kwargs):
     if instance.photo:
         if os.path.isfile(instance.photo.path):
             os.remove(instance.photo.path)
+
+
+@receiver(post_delete, sender=PopularPlace)
+def delete_post_photo(sender, instance, **kwargs):
+    if os.path.isfile(instance.photo.path):
+        os.remove(instance.photo.path)

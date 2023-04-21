@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import Post
+from .models import Post, PopularPlace
 
 
 class PostSerializer(serializers.ModelSerializer):
@@ -17,3 +17,9 @@ class PostListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
         fields = ['id', 'title', 'photo', 'previewText']
+
+
+class PopularPlaceListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PopularPlace
+        fields = ['id', 'title', 'photo']

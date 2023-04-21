@@ -31,6 +31,7 @@ class Review(models.Model):
 
     class Meta:
         verbose_name_plural = 'Отзывы'
+        verbose_name = 'Отзыв'
 
 
 @receiver(post_delete, sender=Review)

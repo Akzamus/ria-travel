@@ -21,7 +21,7 @@ function Reviews() {
                 reviews.map(
                     (review) => (
                         <div className={styles.review} key={review.id}>
-                            <img className={styles.photo} src={review.photo ? review.photo : '/img/anonymous.jpg'} alt={review.name}/>
+                            <img className={styles.photo} src={review.photo || '/img/anonymous.jpg'} alt={review.name}/>
                             <div className={styles.text}>
                                 <h3 className={styles.name}>{review.name}</h3>
                                 <p className={styles.reviewText}>{review.text}</p>

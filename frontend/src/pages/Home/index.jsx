@@ -3,34 +3,8 @@ import Carousel from '../../components/Carousel';
 import ContactForm from '../../components/ContactForm';
 import Links from '../../components/Links';
 import styles from './Home.module.scss'
-
-const slides = [
-    {
-        id: 1,
-        url: 'https://images.unsplash.com/photo-1489516408517-0c0a15662682?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80',
-        title: "Дубаи"
-    },
-    {
-        id: 2,
-        url: 'https://images.unsplash.com/photo-1499092346589-b9b6be3e94b2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80',
-        title: "Америка"
-    },
-    {
-        id: 3,
-        url: 'https://images.unsplash.com/photo-1614505241498-80a3ec936595?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1211&q=80',
-        title: "Мальдивы"
-    },
-    {
-        id: 4,
-        url: 'https://images.unsplash.com/photo-1499856871958-5b9627545d1a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1120&q=80',
-        title: "Франция"
-    },
-    {
-        id: 5,
-        url: 'https://images.unsplash.com/photo-1533656338503-b22f63e96cd8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1073&q=80',
-        title: "Италия"
-    },
-];
+import React from "react";
+import axios from "axios";
 
 const advantages = [
     {
@@ -66,6 +40,17 @@ const advantages = [
 ];
 
 function Home({links}) {
+    const [slides, setSlides] = React.useState([]);
+    React.useEffect(() => {
+		axios.get('http://localhost:8000/api/v1/popular-places/')
+			.then(response => {
+				setSlides(response.data);
+			})
+			.catch(error => {
+				alert('Не удалось получить слайды');
+			});
+	}, []);
+
     return (
         <>
             <div className={styles.companyBanner} style={{backgroundImage: 'url(/img/bannerBackground.jpg)'}}>

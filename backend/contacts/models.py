@@ -19,6 +19,7 @@ class PhoneNumber(models.Model):
 
     class Meta:
         verbose_name_plural = 'Номера телефонов'
+        verbose_name = 'Номер телефона'
 
 
 class Link(models.Model):
@@ -53,4 +54,4 @@ class Link(models.Model):
 
     class Meta:
         verbose_name_plural = 'Ссылки'
-
+        verbose_name = 'Ссылка'

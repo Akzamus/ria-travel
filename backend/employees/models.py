@@ -33,6 +33,7 @@ class Employee(models.Model):
 
     class Meta:
         verbose_name_plural = 'Работники'
+        verbose_name = 'Работник'
 
 
 @receiver(post_delete, sender=Employee)

@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './Carousel.module.scss';
 
-const Carousel = ({slides}) => {
+function Carousel({slides}) {
     const [currentIndex, setCurrentIndex] = React.useState(0);
 
     const goToPrevious = () => {
@@ -20,6 +20,14 @@ const Carousel = ({slides}) => {
         setCurrentIndex(slideIndex);
     };
 
+    if (!slides || !slides.length) {
+        slides = [{
+            id: -1,
+            title: 'Нет слайдов для отображения',
+            photo: '/img/noPhoto.jpg'
+        }];
+    }
+
     return (
         <div className={styles.slider}>
             <h3>{slides[currentIndex].title}</h3>
@@ -31,7 +39,7 @@ const Carousel = ({slides}) => {
                     <i className='bi bi-chevron-right'></i>
                 </div>
             </div>
-            <div className={styles.slide} style={{backgroundImage: `url(${slides[currentIndex].url})`}}></div>
+            <div className={styles.slide} style={{backgroundImage: `url(${slides[currentIndex].photo})`}}></div>
             <div className={styles.dotsContainer}>
                 {
                     slides.map((slide, index) => (

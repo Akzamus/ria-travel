@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.utils.html import format_html
 
-from .models import Post
+from .models import Post, PopularPlace
 
 
 @admin.register(Post)
@@ -11,6 +11,18 @@ class PostAdmin(admin.ModelAdmin):
     search_fields = ('title',)
 
     def photo_tag(self, obj):
-        return format_html('<img class="post-image" src="{}" />'.format(obj.photo.url))
+        return format_html('<img class="image" src="{}" />'.format(obj.photo.url))
 
-    photo_tag.short_description = 'Изображение'
+    photo_tag.short_description = 'Фото'
+
+
+@admin.register(PopularPlace)
+class PopularPlaceAdmin(admin.ModelAdmin):
+    list_display = ('title', 'is_displayed', 'photo_tag')
+    list_filter = ('is_displayed',)
+    search_fields = ('title',)
+
+    def photo_tag(self, obj):
+        return format_html('<img class="image" src="{}" />'.format(obj.photo.url))
+
+    photo_tag.short_description = 'Фото'
