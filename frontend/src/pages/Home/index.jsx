@@ -5,6 +5,8 @@ import Links from '../../components/Links';
 import styles from './Home.module.scss'
 import React from "react";
 import axios from "axios";
+import {ErrorsContext} from "../../errorsContext";
+import Error from "../Error";
 
 const advantages = [
     {
@@ -41,15 +43,24 @@ const advantages = [
 
 function Home({links}) {
     const [slides, setSlides] = React.useState([]);
+    const {hasServerError, setHasServerError} = React.useContext(ErrorsContext);
+
     React.useEffect(() => {
-		axios.get('http://localhost:8000/api/v1/popular-places/')
-			.then(response => {
-				setSlides(response.data);
-			})
-			.catch(error => {
-				alert('Не удалось получить слайды');
-			});
-	}, []);
+        axios.get('http://localhost:8000/api/v1/popular-places/')
+            .then(response => {
+                setSlides(response.data);
+            })
+            .catch(_ => {
+                setHasServerError(true);
+            });
+    }, [setHasServerError]);
+
+    if (hasServerError) {
+        return <Error
+            code={500}
+            text={'Возникла ошибка при получении данных с сервера'}
+        />
+    }
 
     return (
         <>

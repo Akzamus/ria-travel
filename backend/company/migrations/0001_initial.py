@@ -18,7 +18,7 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(primary_key=True, serialize=False)),
                 ('name', models.CharField(max_length=100, verbose_name='Фамилия и имя')),
                 ('experience', models.IntegerField(validators=[django.core.validators.MinValueValidator(0), django.core.validators.MaxValueValidator(100)], verbose_name='Cтаж работы')),
-                ('photo', models.ImageField(upload_to='images/employees/', verbose_name='Фото')),
+                ('photo', models.ImageField(upload_to='images/company/', verbose_name='Фото')),
             ],
         ),
     ]

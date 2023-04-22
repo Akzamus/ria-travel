@@ -1,4 +1,3 @@
-from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 from django.db.models.signals import post_delete
 from django.dispatch import receiver
@@ -15,8 +14,7 @@ class Employee(models.Model):
         blank=False,
         verbose_name='Фамилия и имя'
     )
-    experience = models.IntegerField(
-        validators=[MinValueValidator(0), MaxValueValidator(100)],
+    experience = models.PositiveIntegerField(
         null=False,
         blank=False,
         verbose_name='Cтаж работы'

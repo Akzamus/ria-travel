@@ -4,12 +4,15 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
+API_URL = 'api/v1/'
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/v1/', include('contacts.urls')),
-    path('api/v1/', include('employees.urls')),
-    path('api/v1/', include('news.urls')),
-    path('api/v1/', include('clients.urls')),
+    path(API_URL, include('contacts.urls')),
+    path(API_URL, include('company.urls')),
+    path(API_URL, include('news.urls')),
+    path(API_URL, include('clients.urls')),
+    path(API_URL, include('bots.urls'))
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

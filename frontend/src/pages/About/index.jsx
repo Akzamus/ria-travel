@@ -2,9 +2,12 @@ import EmployeeCard from '../../components/EmployeeCard';
 import styles from './About.module.scss';
 import React from "react";
 import axios from "axios";
+import {ErrorsContext} from "../../errorsContext";
+import Error from "../Error";
 
 function About() {
     const [employees, setEmployees] = React.useState([]);
+    const {hasServerError, setHasServerError} = React.useContext(ErrorsContext);
 
     React.useEffect(() => {
         axios.get('http://localhost:8000/api/v1/employees/')
@@ -12,9 +15,17 @@ function About() {
                 setEmployees(response.data);
             })
             .catch(error => {
-                console.error(error);
+                setHasServerError(true);
             });
     }, []);
+
+    if (hasServerError) {
+        return <Error
+            code={500}
+            text={'Возникла ошибка при получении данных с сервера'}
+        />
+    }
+
     return (
         <>
             <div className={styles.companyDescription}>

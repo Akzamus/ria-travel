@@ -2,6 +2,7 @@ import {CSSTransition} from 'react-transition-group';
 import React from 'react';
 import styles from './ContactForm.module.scss'
 import Input from '../Input';
+import axios from 'axios';
 
 const fadeClassNames = {
     enter: 'fadeEnter',
@@ -31,11 +32,17 @@ function ContactForm() {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (formValid() && permission) {
-            setName('');
-            setPhone('');
-            setCountry('');
-            setIsSubmitted(true);
-            setPermission(false);
+            axios.post('http://localhost:8000/api/v1/contact-form/', { name, phone, country, permission})
+                .then((response) => {
+                    setIsSubmitted(true);
+                    setName('');
+                    setPhone('');
+                    setCountry('');
+                    setPermission(false);
+                })
+                .catch((error) => {
+                    alert('Не удалось отправить форму!')
+                });
         }
     };
 
