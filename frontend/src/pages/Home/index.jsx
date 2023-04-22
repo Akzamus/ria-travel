@@ -93,7 +93,7 @@ function Home({links}) {
                     </div>
                 ) : (
                     <div className={'emptyBlock'}>
-                        <h2>Список преимуществ отсутствует</h2>
+                        <h2>Список отсутствует</h2>
                     </div>
                 )
             }

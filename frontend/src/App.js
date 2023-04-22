@@ -10,6 +10,7 @@ import Info from "./pages/Info";
 import {ErrorsContext} from './errorsContext';
 import React from 'react';
 import axios from "axios";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 
 function App() {
 	const [phones, setPhones] = React.useState([]);
@@ -62,6 +63,7 @@ function App() {
 					<Route path='/news' element={<News posts={posts} loading={loading}/>} />
 					<Route path='/news/:id' element={<Post/>} />
 					<Route path='/reviews' element={<Reviews />} />
+					<Route path='/privacy-policy' element={<PrivacyPolicy />} />
 					<Route path='*' element={<Info code={404} text={'Страница не найдена'} />} />
 				</Routes>
 				<Footer phones={phones} links={links} />

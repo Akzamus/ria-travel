@@ -1,0 +1,22 @@
+.container {
+  padding: 3rem;
+
+  .heading {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+  }
+
+  .text {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+
+  @media (max-width: 600px) {
+    padding: 2rem;
+
+    .heading {
+      font-size: 1.1rem;
+    }
+  }
+}

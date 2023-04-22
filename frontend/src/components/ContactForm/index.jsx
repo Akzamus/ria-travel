@@ -3,6 +3,7 @@ import React from 'react';
 import styles from './ContactForm.module.scss'
 import Input from '../Input';
 import axios from 'axios';
+import {Link} from "react-router-dom";
 
 const fadeClassNames = {
     enter: 'fadeEnter',
@@ -33,14 +34,14 @@ function ContactForm() {
         e.preventDefault();
         if (formValid() && permission) {
             axios.post('http://localhost:8000/api/v1/contact-form/', { name, phone, country, permission})
-                .then((response) => {
+                .then((_) => {
                     setIsSubmitted(true);
                     setName('');
                     setPhone('');
                     setCountry('');
                     setPermission(false);
                 })
-                .catch((error) => {
+                .catch(_ => {
                     alert('Не удалось отправить форму!')
                 });
         }
@@ -124,7 +125,7 @@ function ContactForm() {
                            checked={permission}
                            onChange={() => setPermission(!permission)}
                     />
-                    <> Я даю согласие на <a href="index.html">обработку персональных данных</a></>
+                    <> Я даю согласие на <Link to="/privacy-policy">обработку персональных данных</Link></>
                 </label>
                 <CSSTransition
                     in={formErrors.permissionIsNotValid}
