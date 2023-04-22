@@ -65,6 +65,18 @@ body {
 	}
 }
 
+.emptyBlock {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	height: 200px;
+
+	h2 {
+		text-align: center;
+		width: 100%;
+	}
+}
+
 .fadeEnter {
 	opacity: 0;
 }

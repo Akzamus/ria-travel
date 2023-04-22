@@ -2,7 +2,9 @@ import telebot
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
+from telebot.apihelper import ApiException
 
+from .models import TelegramChat
 from .serializers import ContactFormSerializer
 from .telegram_bot import bot
 from rest_framework.views import APIView
@@ -15,17 +17,23 @@ class ContactFormView(APIView):
     def post(self, request, *args, **kwargs):
         serializer = self.serializer_class(data=request.data)
         serializer.is_valid(raise_exception=True)
-
-        name = serializer.validated_data['name']
-        phone = serializer.validated_data['phone']
-        country = serializer.validated_data['country']
+        data = serializer.validated_data
 
         message = f'Новая заявка!\n\n' \
-                  f'Имя: {name}\n' \
-                  f'Телефон: {phone}\n' \
-                  f'Страна: {country}\n'
+                  f'Имя: {data["name"]}\n' \
+                  f'Телефон: {data["phone"]}\n' \
+                  f'Страна: {data["country"]}\n'
 
-        bot.send_message(chat_id='880532181', text=message)
+        chats = TelegramChat.objects.values_list('chat_id', flat=True)
+
+        for chat in chats:
+            try:
+                bot.send_message(
+                    chat_id=chat,
+                    text=message
+                )
+            except (ApiException, ConnectionError):
+                return HttpResponse(status=400)
 
         return Response({'success': True})
 

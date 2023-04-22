@@ -1,7 +1,7 @@
 import React from 'react';
 import {useParams, Link} from 'react-router-dom';
 import styles from './Post.module.scss';
-import Error from '../Error';
+import Info from '../Info';
 import axios from 'axios';
 import {ErrorsContext} from "../../errorsContext";
 
@@ -17,24 +17,32 @@ function Post() {
                 setPost(response.data);
                 setLoading(false);
             })
-            .catch(() => {
-                setHasServerError(true);
+            .catch(error => {
+                if (!error.response || error.response.status !== 404) {
+                    setHasServerError(true);
+                }
+                setLoading(false);
             });
     }, [id, setHasServerError]);
 
     if (hasServerError) {
-        return <Error
-            code={500}
+        return <Info
+            errorCode={500}
             text={'Возникла ошибка при получении данных с сервера'}
         />
     }
 
-    if (loading) {
-        return <p>Loading...</p>;
+    if (Object.keys(post).length === 0 && !loading) {
+        return <Info
+            errorCode={404}
+            text={'Страница не найдена'}
+        />;
     }
 
-    if (!post) {
-        return <Error code={404} text={'Страница не найдена'}/>;
+    if (loading) {
+        return <Info
+            text={'Загрузка...'}
+        />
     }
 
     const {title, photo, mainText} = post;

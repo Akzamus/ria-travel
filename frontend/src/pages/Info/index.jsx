@@ -1,8 +1,8 @@
 import React from "react";
-import styles from "./Error.module.scss";
+import styles from "./Info.module.scss";
 
-function Error({code, text}) {
-    const chars = code.toString().split('');
+function Error({text, errorCode = ''}) {
+    const chars = errorCode.toString().split('');
     const codeWithSpans = chars.map((char, index) =>
         index % 2 === 0 ? <span key={index}>{char}</span> : char
     );

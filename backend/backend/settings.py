@@ -18,6 +18,7 @@ INSTALLED_APPS = [
     'company.apps.CompanyConfig',
     'news.apps.NewsConfig',
     'clients.apps.ClientsConfig',
+    'bots.apps.BotsConfig',
 
     'rest_framework',
     'corsheaders',

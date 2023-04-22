@@ -3,7 +3,7 @@ import styles from './About.module.scss';
 import React from "react";
 import axios from "axios";
 import {ErrorsContext} from "../../errorsContext";
-import Error from "../Error";
+import Info from "../Info";
 
 function About() {
     const [employees, setEmployees] = React.useState([]);
@@ -15,13 +15,15 @@ function About() {
                 setEmployees(response.data);
             })
             .catch(error => {
-                setHasServerError(true);
+                if (!error.response || error.response.status !== 404) {
+                    setHasServerError(true);
+                }
             });
-    }, []);
+    }, [setHasServerError]);
 
     if (hasServerError) {
-        return <Error
-            code={500}
+        return <Info
+            errorCode={500}
             text={'Возникла ошибка при получении данных с сервера'}
         />
     }
@@ -41,20 +43,28 @@ function About() {
                     продукты. Нам доверяют постоянные клиенты на протяжении 10 лет.</p>
             </div>
             <h2 className='heading'>Наши сотрудники</h2>
-            <div className={styles.employeeCards}>
-                {
-                    employees.map(
-                        employee => (
-                            <EmployeeCard
-                                key={employee.id}
-                                photo={employee.photo}
-                                name={employee.name}
-                                experience={employee.experience}
-                            />
-                        )
-                    )
-                }
-            </div>
+            {
+                employees.length !== 0 ? (
+                    <div className={styles.employeeCards}>
+                        {
+                            employees.map(
+                                employee => (
+                                    <EmployeeCard
+                                        key={employee.id}
+                                        photo={employee.photo}
+                                        name={employee.name}
+                                        experience={employee.experience}
+                                    />
+                                )
+                            )
+                        }
+                    </div>
+                ) : (
+                    <div className={'emptyBlock'}>
+                        <h2>Список сотрудников отсутствует</h2>
+                    </div>
+                )
+            }
             <h2 className='heading'>Расположение офиса</h2>
             <h4 className={styles.location}>г. Алматы, ул. Байзакова 303, офис 108</h4>
             <a href='https://yandex.kz/maps/162/almaty/?ll=76.915365%2C43.230274&mode=usermaps&source=constructorLink&um=constructor%3A64beb2d8562b1f5e8f31c5c2aaa6f5e15adecea9ce7616c95867d65a38b6782a&z=18'>

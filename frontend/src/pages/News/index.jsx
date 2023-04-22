@@ -2,15 +2,21 @@ import React from "react";
 import styles from "./News.module.scss";
 import {Link} from "react-router-dom";
 import {ErrorsContext} from "../../errorsContext";
-import Error from "../Error";
+import Info from "../Info";
 
-function News({posts}) {
+function News({posts, loading}) {
     const {hasServerError} = React.useContext(ErrorsContext);
 
     if (hasServerError) {
-        return <Error
-            code={500}
+        return <Info
+            errorCode={500}
             text={'Возникла ошибка при получении данных с сервера'}
+        />
+    }
+
+    if (loading) {
+        return <Info
+            text={'Загрузка...'}
         />
     }
 

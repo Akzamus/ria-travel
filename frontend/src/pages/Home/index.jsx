@@ -6,7 +6,7 @@ import styles from './Home.module.scss'
 import React from "react";
 import axios from "axios";
 import {ErrorsContext} from "../../errorsContext";
-import Error from "../Error";
+import Info from "../Info";
 
 const advantages = [
     {
@@ -50,14 +50,16 @@ function Home({links}) {
             .then(response => {
                 setSlides(response.data);
             })
-            .catch(_ => {
-                setHasServerError(true);
+            .catch(error => {
+                if (!error.response || error.response.status !== 404) {
+                    setHasServerError(true);
+                }
             });
     }, [setHasServerError]);
 
     if (hasServerError) {
-        return <Error
-            code={500}
+        return <Info
+            errorCode={500}
             text={'Возникла ошибка при получении данных с сервера'}
         />
     }
@@ -74,19 +76,27 @@ function Home({links}) {
             </div>
 
             <h2 className='heading'>Почему выбирают нас</h2>
-            <div className={styles.advantages}>
-                {
-                    advantages.map(
-                        (advantage, index) =>
-                            <AdvantageCard
-                                key={index}
-                                icon={advantage.icon}
-                                title={advantage.title}
-                                text={advantage.text}
-                            />
-                    )
-                }
-            </div>
+            {
+                advantages.length !== 0 ? (
+                    <div className={styles.advantages}>
+                        {
+                            advantages.map(
+                                (advantage, index) =>
+                                    <AdvantageCard
+                                        key={index}
+                                        icon={advantage.icon}
+                                        title={advantage.title}
+                                        text={advantage.text}
+                                    />
+                            )
+                        }
+                    </div>
+                ) : (
+                    <div className={'emptyBlock'}>
+                        <h2>Список преимуществ отсутствует</h2>
+                    </div>
+                )
+            }
 
             <h2 className='heading'>Популярны места</h2>
             <div className={styles.carouselContainer}>

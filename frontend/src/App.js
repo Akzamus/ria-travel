@@ -5,8 +5,8 @@ import About from './pages/About';
 import Footer from './components/Footer';
 import News from './pages/News';
 import Post from './pages/Post';
-import Error from './pages/Error';
 import Reviews from './pages/Reviews';
+import Info from "./pages/Info";
 import {ErrorsContext} from './errorsContext';
 import React from 'react';
 import axios from "axios";
@@ -15,6 +15,7 @@ function App() {
 	const [phones, setPhones] = React.useState([]);
 	const [links, setLinks] = React.useState([]);
 	const [posts, setPosts] = React.useState([]);
+	const [loading, setLoading] = React.useState(true);
 	const [hasServerError, setHasServerError] = React.useState(false);
 
 	React.useEffect(() => {
@@ -23,7 +24,9 @@ function App() {
 				setPhones(response.data);
 			})
 			.catch(error => {
-				setHasServerError(true);
+                if (!error.response || error.response.status !== 404) {
+                    setHasServerError(true);
+                }
 			});
 
 		axios.get('http://localhost:8000/api/v1/links/')
@@ -31,15 +34,21 @@ function App() {
 				setLinks(response.data);
 			})
 			.catch(error => {
-				setHasServerError(true);
+                if (!error.response || error.response.status !== 404) {
+                    setHasServerError(true);
+                }
 			});
 
 		axios.get('http://localhost:8000/api/v1/posts/')
 			.then(response => {
 				setPosts(response.data);
+				setLoading(false);
 			})
 			.catch(error => {
-				setHasServerError(true);
+                if (!error.response || error.response.status !== 404) {
+                    setHasServerError(true);
+                }
+                setLoading(false);
 			});
 	}, []);
 
@@ -50,10 +59,10 @@ function App() {
 				<Routes>
 					<Route path='/' element={<Home links={links} />} />
 					<Route path='/about' element={<About />} />
-					<Route path='/news' element={<News posts={posts} />} />
+					<Route path='/news' element={<News posts={posts} loading={loading}/>} />
 					<Route path='/news/:id' element={<Post/>} />
 					<Route path='/reviews' element={<Reviews />} />
-					<Route path='*' element={<Error code={404} text={'Страница не найдена'} />} />
+					<Route path='*' element={<Info code={404} text={'Страница не найдена'} />} />
 				</Routes>
 				<Footer phones={phones} links={links} />
 			</div>

@@ -2,26 +2,37 @@ import React from "react";
 import styles from "./Reviews.module.scss";
 import axios from "axios";
 import {ErrorsContext} from "../../errorsContext";
-import Error from "../Error";
+import Info from "../Info";
 
 function Reviews() {
     const [reviews, setReviews] = React.useState([]);
+    const [loading, setLoading] = React.useState(true);
     const {hasServerError, setHasServerError} = React.useContext(ErrorsContext);
 
     React.useEffect(() => {
         axios.get('http://localhost:8000/api/v1/reviews/')
             .then(response => {
                 setReviews(response.data);
+                setLoading(false);
             })
-            .catch(_ => {
-                setHasServerError(true);
+            .catch(error => {
+                if (error.response.status !== 404) {
+                    setHasServerError(true);
+                }
+                setLoading(false);
             });
     }, [setHasServerError]);
 
     if (hasServerError) {
-        return <Error
-            code={500}
+        return <Info
+            errorCode={500}
             text={'Возникла ошибка при получении данных с сервера'}
+        />
+    }
+
+    if (loading) {
+        return <Info
+            text={'Загрузка...'}
         />
     }
 
