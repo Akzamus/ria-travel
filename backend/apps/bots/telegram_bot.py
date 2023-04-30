@@ -1,5 +1,5 @@
 import telebot
-from backend.settings import TG_BOT_TOKEN, TG_WEBHOOK
+from core.settings import TG_BOT_TOKEN, TG_WEBHOOK
 
 bot = telebot.TeleBot(TG_BOT_TOKEN)
 bot.remove_webhook()
