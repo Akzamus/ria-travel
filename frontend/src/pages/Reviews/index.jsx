@@ -1,16 +1,15 @@
 import React from "react";
 import styles from "./Reviews.module.scss";
-import axios from "axios";
-import {ErrorsContext} from "../../errorsContext";
+import {AppContext} from "../../appContext";
 import Info from "../Info";
 
 function Reviews() {
     const [reviews, setReviews] = React.useState([]);
     const [loading, setLoading] = React.useState(true);
-    const {hasServerError, setHasServerError} = React.useContext(ErrorsContext);
+    const {hasServerError, setHasServerError, api} = React.useContext(AppContext);
 
     React.useEffect(() => {
-        axios.get('http://localhost:8000/api/v1/reviews/')
+        api.get('/reviews/')
             .then(response => {
                 setReviews(response.data);
                 setLoading(false);
@@ -21,7 +20,7 @@ function Reviews() {
                 }
                 setLoading(false);
             });
-    }, [setHasServerError]);
+    }, [setHasServerError, api]);
 
     if (hasServerError) {
         return <Info

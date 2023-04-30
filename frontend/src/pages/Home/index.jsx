@@ -4,8 +4,7 @@ import ContactForm from '../../components/ContactForm';
 import Links from '../../components/Links';
 import styles from './Home.module.scss'
 import React from "react";
-import axios from "axios";
-import {ErrorsContext} from "../../errorsContext";
+import {AppContext} from "../../appContext";
 import Info from "../Info";
 
 const advantages = [
@@ -43,10 +42,10 @@ const advantages = [
 
 function Home({links}) {
     const [slides, setSlides] = React.useState([]);
-    const {hasServerError, setHasServerError} = React.useContext(ErrorsContext);
+    const {hasServerError, setHasServerError, api} = React.useContext(AppContext);
 
     React.useEffect(() => {
-        axios.get('http://localhost:8000/api/v1/popular-places/')
+        api.get('/popular-places/')
             .then(response => {
                 setSlides(response.data);
             })
@@ -55,7 +54,7 @@ function Home({links}) {
                     setHasServerError(true);
                 }
             });
-    }, [setHasServerError]);
+    }, [setHasServerError, api]);
 
     if (hasServerError) {
         return <Info

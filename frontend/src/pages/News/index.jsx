@@ -1,11 +1,11 @@
 import React from "react";
 import styles from "./News.module.scss";
 import {Link} from "react-router-dom";
-import {ErrorsContext} from "../../errorsContext";
+import {AppContext} from "../../appContext";
 import Info from "../Info";
 
 function News({posts, loading}) {
-    const {hasServerError} = React.useContext(ErrorsContext);
+    const {hasServerError} = React.useContext(AppContext);
 
     if (hasServerError) {
         return <Info

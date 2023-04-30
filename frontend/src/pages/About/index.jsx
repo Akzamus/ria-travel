@@ -1,16 +1,15 @@
 import EmployeeCard from '../../components/EmployeeCard';
 import styles from './About.module.scss';
 import React from "react";
-import axios from "axios";
-import {ErrorsContext} from "../../errorsContext";
+import {AppContext} from "../../appContext";
 import Info from "../Info";
 
 function About() {
     const [employees, setEmployees] = React.useState([]);
-    const {hasServerError, setHasServerError} = React.useContext(ErrorsContext);
+    const {hasServerError, setHasServerError, api} = React.useContext(AppContext);
 
     React.useEffect(() => {
-        axios.get('http://localhost:8000/api/v1/employees/')
+        api.get('/employees/')
             .then(response => {
                 setEmployees(response.data);
             })
@@ -19,7 +18,7 @@ function About() {
                     setHasServerError(true);
                 }
             });
-    }, [setHasServerError]);
+    }, [setHasServerError, api]);
 
     if (hasServerError) {
         return <Info

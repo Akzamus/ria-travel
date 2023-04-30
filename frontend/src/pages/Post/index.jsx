@@ -2,17 +2,16 @@ import React from 'react';
 import {useParams, Link} from 'react-router-dom';
 import styles from './Post.module.scss';
 import Info from '../Info';
-import axios from 'axios';
-import {ErrorsContext} from "../../errorsContext";
+import {AppContext} from "../../appContext";
 
 function Post() {
     const {id} = useParams();
     const [post, setPost] = React.useState({});
     const [loading, setLoading] = React.useState(true);
-    const {hasServerError, setHasServerError} = React.useContext(ErrorsContext);
+    const {hasServerError, setHasServerError, api} = React.useContext(AppContext);
 
     React.useEffect(() => {
-        axios.get(`http://localhost:8000/api/v1/posts/${id}`)
+        api.get(`/posts/${id}`)
             .then((response) => {
                 setPost(response.data);
                 setLoading(false);
@@ -23,7 +22,7 @@ function Post() {
                 }
                 setLoading(false);
             });
-    }, [id, setHasServerError]);
+    }, [id, setHasServerError, api]);
 
     if (hasServerError) {
         return <Info
