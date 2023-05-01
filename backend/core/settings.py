@@ -1,17 +1,23 @@
-from dotenv import load_dotenv
 from pathlib import Path
+import environ
 import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-load_dotenv()
+env = environ.Env(
+    DEBUG=(bool, False)
+)
 
-SECRET_KEY = os.getenv('SECRET_KEY')
-TG_BOT_TOKEN = os.getenv('TG_BOT_TOKEN')
-TG_WEBHOOK = os.getenv('TG_WEBHOOK')
+environ.Env.read_env()
 
-DEBUG = True
-ALLOWED_HOSTS = ['865b-2-135-65-19.eu.ngrok.io', 'localhost']
+
+SECRET_KEY = env('SECRET_KEY')
+TG_BOT_TOKEN = env('TG_BOT_TOKEN')
+TG_WEBHOOK = env('TG_WEBHOOK')
+
+DEBUG = env('DEBUG')
+
+ALLOWED_HOSTS = env('ALLOWED_HOSTS').split(' ')
 
 INSTALLED_APPS = [
     'apps.contacts.apps.ContactsConfig',
@@ -107,9 +113,8 @@ USE_L10N = True
 USE_TZ = True
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, "static"),
 ]
 
 MEDIA_URL = '/media/'
@@ -122,6 +127,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ORIGIN_ALLOW_ALL = False
 
-CORS_ORIGIN_WHITELIST = [
-    'http://localhost:3000',
-]
+CORS_ORIGIN_WHITELIST = env('CORS_ORIGIN_WHITELIST').split(' ')

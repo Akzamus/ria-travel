@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  frontend:
+    container_name: ria-frontend-container
+    image: ria-frontend
+    build: ./frontend
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    command: npm start
+    depends_on:
+      - backend
+  backend:
+    container_name: ria-backend-container
+    image: ria-backend
+    build: ./backend
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    volumes:
+      - static:/usr/src/app/static
+      - media:/usr/src/app/media
+      - ./backend/db.sqlite3:/usr/src/app/db.sqlite3
+    command: gunicorn core.wsgi:application --bind 0.0.0.0:8000 -w 2
+
+volumes:
+  static:
+  media:

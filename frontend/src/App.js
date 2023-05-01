@@ -13,7 +13,7 @@ import axios from "axios";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 
 const api = axios.create({
-	baseURL: 'http://localhost:8000/api/v1'
+	baseURL: process.env.REACT_APP_API_URL
 });
 
 function App() {
