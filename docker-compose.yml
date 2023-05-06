@@ -1,29 +1,39 @@
-version: '3.8'
-
 services:
-  frontend:
-    container_name: ria-frontend-container
-    image: ria-frontend
-    build: ./frontend
-    restart: unless-stopped
-    ports:
-      - "3000:3000"
-    command: npm start
-    depends_on:
-      - backend
   backend:
     container_name: ria-backend-container
     image: ria-backend
     build: ./backend
     restart: unless-stopped
-    ports:
-      - "8000:8000"
+    expose:
+      - 8000
     volumes:
-      - static:/usr/src/app/static
+      - django-static:/usr/src/app/staticfiles
       - media:/usr/src/app/media
       - ./backend/db.sqlite3:/usr/src/app/db.sqlite3
-    command: gunicorn core.wsgi:application --bind 0.0.0.0:8000 -w 2
+    command: gunicorn core.wsgi:application --bind 0.0.0.0:8000 -w 1
+  frontend:
+    container_name: ria-frontend-container
+    image: ria-frontend
+    build: ./frontend
+    restart: unless-stopped
+    expose:
+      - 3000
+    command: serve -s /usr/src/app/build -l 3000
+    depends_on:
+      - backend
+  nginx:
+    container_name: ria-nginx-container
+    image: ria-nginx
+    build: ./nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    volumes:
+      - django-static:/usr/src/app/staticfiles
+      - media:/usr/src/app/media
+    depends_on:
+      - frontend
 
 volumes:
-  static:
+  django-static:
   media:
