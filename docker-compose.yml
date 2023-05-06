@@ -16,9 +16,8 @@ services:
     image: ria-frontend
     build: ./frontend
     restart: unless-stopped
-    expose:
-      - 3000
-    command: serve -s /usr/src/app/build -l 3000
+    volumes:
+      - react-build:/usr/src/app/build
     depends_on:
       - backend
   nginx:
@@ -30,6 +29,7 @@ services:
       - "80:80"
     volumes:
       - django-static:/usr/src/app/staticfiles
+      - react-build:/usr/share/nginx/html
       - media:/usr/src/app/media
     depends_on:
       - frontend
@@ -37,3 +37,4 @@ services:
 volumes:
   django-static:
   media:
+  react-build:
