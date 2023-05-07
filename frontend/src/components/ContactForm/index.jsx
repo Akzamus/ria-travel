@@ -2,8 +2,8 @@ import {CSSTransition} from 'react-transition-group';
 import React from 'react';
 import styles from './ContactForm.module.scss'
 import Input from '../Input';
-import axios from 'axios';
 import {Link} from "react-router-dom";
+import {AppContext} from "../../appContext";
 
 const fadeClassNames = {
     enter: 'fadeEnter',
@@ -29,11 +29,12 @@ function ContactForm() {
     const [formErrors, setFormErrors] = React.useState({});
     const [permission, setPermission] = React.useState(false);
     const [isSubmitted, setIsSubmitted] = React.useState(false);
+    const {api} = React.useContext(AppContext);
 
     const handleSubmit = (e) => {
         e.preventDefault();
         if (formValid() && permission) {
-            axios.post('http://localhost:8000/api/v1/contact-form/', { name, phone, country, permission})
+            api.post('/contact-form/', {name, phone, country, permission})
                 .then((_) => {
                     setIsSubmitted(true);
                     setName('');

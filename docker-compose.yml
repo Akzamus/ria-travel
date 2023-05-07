@@ -8,14 +8,13 @@ services:
       - 8000
     volumes:
       - django-static:/usr/src/app/staticfiles
-      - media:/usr/src/app/media
       - ./backend/db.sqlite3:/usr/src/app/db.sqlite3
+      - ./backend/media:/usr/src/app/media
     command: gunicorn core.wsgi:application --bind 0.0.0.0:8000 -w 1
   frontend:
     container_name: ria-frontend-container
     image: ria-frontend
     build: ./frontend
-    restart: unless-stopped
     volumes:
       - react-build:/usr/src/app/build
     depends_on:
@@ -30,11 +29,11 @@ services:
     volumes:
       - django-static:/usr/src/app/staticfiles
       - react-build:/usr/share/nginx/html
-      - media:/usr/src/app/media
+      - ./backend/media:/usr/src/app/media
     depends_on:
       - frontend
 
 volumes:
   django-static:
-  media:
   react-build:
+  media:

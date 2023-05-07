@@ -2,17 +2,18 @@ import telebot
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
+from rest_framework.response import Response
+from rest_framework.views import APIView
 from telebot.apihelper import ApiException
-
 from .models import TelegramChat
 from .serializers import ContactFormSerializer
 from .telegram_bot import bot
-from rest_framework.views import APIView
-from rest_framework.response import Response
 
 
 class ContactFormView(APIView):
     serializer_class = ContactFormSerializer
+    permission_classes = ()
+    authentication_classes = ()
 
     def post(self, request, *args, **kwargs):
         serializer = self.serializer_class(data=request.data)
@@ -45,5 +46,5 @@ def tg_webhook(request):
         update = telebot.types.Update.de_json(request.body.decode())
         bot.process_new_updates([update])
         return HttpResponse(status=200)
-    except Exception as e:
+    except Exception:
         return HttpResponse(status=400)

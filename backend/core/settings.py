@@ -1,23 +1,23 @@
 from pathlib import Path
-import environ
+from dotenv import load_dotenv
 import os
 
+API_URL = 'api/v1/'
+
 BASE_DIR = Path(__file__).resolve().parent.parent
+load_dotenv()
 
-env = environ.Env(
-    DEBUG=(bool, False)
-)
+SECRET_KEY = os.getenv('SECRET_KEY')
 
-environ.Env.read_env()
+TG_BOT_TOKEN = os.getenv('TG_BOT_TOKEN')
+TG_WEBHOOK = os.getenv('TG_WEBHOOK')
 
+DEBUG = os.getenv('DEBUG')
 
-SECRET_KEY = env('SECRET_KEY')
-TG_BOT_TOKEN = env('TG_BOT_TOKEN')
-TG_WEBHOOK = env('TG_WEBHOOK')
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split(' ')
 
-DEBUG = env('DEBUG')
-
-ALLOWED_HOSTS = env('ALLOWED_HOSTS').split(' ')
+CORS_ORIGIN_ALLOW_ALL = False
+CORS_ORIGIN_WHITELIST = os.getenv('CORS_ORIGIN_WHITELIST').split(' ')
 
 INSTALLED_APPS = [
     'apps.contacts.apps.ContactsConfig',
@@ -28,6 +28,8 @@ INSTALLED_APPS = [
 
     'rest_framework',
     'corsheaders',
+    'admin_interface',
+    'colorfield',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -70,20 +72,12 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'core.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
-
-# Password validation
-# https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -100,6 +94,15 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+X_FRAME_OPTIONS = "SAMEORIGIN"
+SILENCED_SYSTEM_CHECKS = ["security.W019"]
+
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+    )
+}
+
 LANGUAGE_CODE = 'ru'
 TIME_ZONE = 'UTC'
 
@@ -110,14 +113,11 @@ USE_TZ = True
 STATIC_URL = '/staticfiles/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
+
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-# Default primary key field type
-# https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-CORS_ORIGIN_ALLOW_ALL = False
-
-CORS_ORIGIN_WHITELIST = env('CORS_ORIGIN_WHITELIST').split(' ')

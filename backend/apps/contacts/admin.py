@@ -30,7 +30,3 @@ class PhoneNumberAdmin(admin.ModelAdmin):
         return obj.number
 
     number_display.short_description = 'Телефон'
-
-
-admin.site.site_title = 'RIA TRAVEL'
-admin.site.site_header = 'Ria Travel админ панель'
