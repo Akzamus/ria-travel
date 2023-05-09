@@ -21,17 +21,27 @@ services:
       - backend
   nginx:
     container_name: ria-nginx-container
-    image: ria-nginx
-    build: ./nginx
+    image: nginx:1.17
     restart: unless-stopped
     ports:
       - "80:80"
+      - "443:443"
     volumes:
       - django-static:/usr/src/app/staticfiles
       - react-build:/usr/share/nginx/html
       - ./backend/media:/usr/src/app/media
+      - ./http-server/nginx:/etc/nginx/conf.d
+      - ./http-server/certbot/conf:/etc/letsencrypt
+      - ./http-server/certbot/www:/var/www/certbot
     depends_on:
       - frontend
+  certbot:
+    image: certbot/certbot
+    restart: unless-stopped
+    volumes:
+      - ./http-server/certbot/conf:/etc/letsencrypt
+      - ./http-server/certbot/www:/var/www/certbot
+    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
 
 volumes:
   django-static:
