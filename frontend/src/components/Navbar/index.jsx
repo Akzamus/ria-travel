@@ -14,10 +14,10 @@ function Navbar() {
 
                 <div>
                     <ul className={`${styles.menu} ${isClicked ? {} : styles.close}`}>
-                        <li><Link to="/">Главная</Link></li>
-                        <li><Link to="/about">О компании</Link></li>
-                        <li><Link to="/news">Новости</Link></li>
-                        <li><Link to="/reviews">Отзывы</Link></li>
+                        <li><Link onClick={() => setIsClicked(!isClicked)} to="/">Главная</Link></li>
+                        <li><Link onClick={() => setIsClicked(!isClicked)} to="/about">О компании</Link></li>
+                        <li><Link onClick={() => setIsClicked(!isClicked)} to="/news">Новости</Link></li>
+                        <li><Link onClick={() => setIsClicked(!isClicked)} to="/reviews">Отзывы</Link></li>
                     </ul>
                 </div>
 
