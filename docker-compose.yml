@@ -36,6 +36,7 @@ services:
     depends_on:
       - frontend
   certbot:
+    container_name: ria-certbot-container
     image: certbot/certbot
     restart: unless-stopped
     volumes:

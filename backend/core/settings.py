@@ -19,6 +19,9 @@ ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split(' ')
 CORS_ORIGIN_ALLOW_ALL = False
 CORS_ORIGIN_WHITELIST = os.getenv('CORS_ORIGIN_WHITELIST').split(' ')
 
+SECURE_SSL_REDIRECT = True
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
 INSTALLED_APPS = [
     'apps.contacts.apps.ContactsConfig',
     'apps.company.apps.CompanyConfig',
