@@ -1,4 +1,3 @@
-import AdvantageCard from '../../components/AdvantageCard';
 import Carousel from '../../components/Carousel';
 import ContactForm from '../../components/ContactForm';
 import Links from '../../components/Links';
@@ -6,6 +5,7 @@ import styles from './Home.module.scss'
 import React from "react";
 import {AppContext} from "../../appContext";
 import Info from "../Info";
+import InfoCards from "../../components/InfoCards";
 
 const advantages = [
     {
@@ -37,6 +37,73 @@ const advantages = [
         icon: 'bi bi-heart',
         title: 'Любовь к нашим клиентам',
         text: 'Мы искренне уважаем и ценим каждого нашего клиента и делаем все возможное, чтобы сделать их путешествие незабываемым и приятным.'
+    }
+];
+
+const services = [
+    {
+        icon: 'emoji_emotions',
+        title: 'Горящие туры'
+    },
+    {
+        icon: 'public',
+        title: 'Туры по всему миру'
+    },
+    {
+        icon: 'flag',
+        title: 'Туры в Европу'
+    },
+    {
+        icon: 'credit_card',
+        title: 'Туры в рассрочку'
+    },
+    {
+        icon: 'description',
+        title: 'Помощь в оформлении визы'
+    },
+    {
+        icon: 'flight',
+        title: 'Авиабилеты'
+    },
+    {
+        icon: 'train',
+        title: 'Железнодорожные билеты'
+    },
+    {
+        icon: 'hotel',
+        title: 'Бронирование отелей'
+    },
+    {
+        icon: 'shuffle',
+        title: 'Организация трансфера'
+    },
+    {
+        icon: 'explore',
+        title: 'Экскурсии в любой точке мира'
+    },
+    {
+        icon: 'directions_boat',
+        title: 'Круизы'
+    },
+    {
+        icon: 'security',
+        title: 'Страхование'
+    },
+    {
+        icon: 'person',
+        title: 'Индивидуальные туры'
+    },
+    {
+        icon: 'book',
+        title: 'Обучение за рубежом'
+    },
+    {
+        icon: 'favorite',
+        title: 'Организация свадебных путешествий'
+    },
+    {
+        icon: 'local_hospital',
+        title: 'Лечебный туризм'
     }
 ];
 
@@ -75,29 +142,23 @@ function Home({links}) {
             </div>
 
             <h2 className='heading'>Почему выбирают нас</h2>
-            {
-                advantages.length !== 0 ? (
-                    <div className={styles.advantages}>
-                        {
-                            advantages.map(
-                                (advantage, index) =>
-                                    <AdvantageCard
-                                        key={index}
-                                        icon={advantage.icon}
-                                        title={advantage.title}
-                                        text={advantage.text}
-                                    />
-                            )
-                        }
-                    </div>
-                ) : (
-                    <div className={'emptyBlock'}>
-                        <h2>Список отсутствует</h2>
-                    </div>
-                )
-            }
+            <InfoCards cards={advantages}/>
 
-            <h2 className='heading'>Популярны места</h2>
+            <h2 className='heading'>Наши услуги</h2>
+            <ul className={styles.services}>
+                {
+                    services.map(
+                        service => (
+                            <li key={service.title}>
+                                <i className="material-icons">{service.icon}</i>
+                                <span>{service.title}</span>
+                            </li>
+                        )
+                    )
+                }
+            </ul>
+
+            <h2 className='heading'>Популярные места</h2>
             <div className={styles.carouselContainer}>
                 <Carousel slides={slides}/>
             </div>

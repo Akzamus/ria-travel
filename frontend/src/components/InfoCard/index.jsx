@@ -1,8 +1,8 @@
-import styles from './AdvantageCard.module.scss';
+import styles from './InfoCard.module.scss';
 
-function Advantage({icon, title, text}) {
+function InfoCard({icon, title, text}) {
     return (
-        <div className={styles.advantage}>
+        <div className={styles.infoCard}>
             <div className={styles.header}>
                 <i className={icon}></i>
                 <h3>{title}</h3>
@@ -12,4 +12,4 @@ function Advantage({icon, title, text}) {
     );
 }
 
-export default Advantage;
+export default InfoCard;

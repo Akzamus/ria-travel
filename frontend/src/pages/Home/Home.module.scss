@@ -4,13 +4,6 @@
 	margin: 0 auto;
 }
 
-.advantages {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-	padding: 50px;
-}
-
 .companyBanner {
 	padding: 20px 50px;
 	font-size: 1.2rem;
@@ -25,10 +18,8 @@
 		width: 490px;
 		margin: 20px 0;
 	}
-}
 
-@media (max-width: 768px) {
-	.companyBanner {
+	@media (max-width: 768px) {
 		padding: 20px;
 		font-size: 1rem;
 		height: auto;
@@ -50,8 +41,40 @@
 			}
 		}
 	}
+}
 
-	.advantages {
-		padding: 10px;
+.services {
+	columns: 2;
+	list-style-type: none;
+	padding: 3% 5%;
+	font-size: 1.1rem;
+	color: #656c73;
+
+	li {
+		margin-bottom: 10px;
+		display: flex;
+		text-align: right;
+		padding: 5px 10px;
+		box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
+		background-color: white;
+		border-radius: 5px;
+
+		i {
+			color: #5555ff;
+			margin-right: 5px;
+		}
+
+		span {
+			display: inline-block;
+    		width: 100%;
+		}
+
+		&:nth-child(2n + 1) {
+			background-color: #f1f0f0;
+		}
+	}
+
+	@media (max-width: 600px) {
+		columns: 1;
 	}
 }
